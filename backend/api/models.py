@@ -35,3 +35,16 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.first_name + self.middle_name + self.last_name
+
+
+class Scheme(models.Model):
+    name = models.CharField(max_length=50, blank=False)
+    
+    # todo : complete this task
+
+    class Meta:
+        verbose_name = 'Scheme'
+        verbose_name_plural = 'Schemes'
+
+    def __str__(self):
+        return self.name
