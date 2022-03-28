@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
 GENDER_OPTIONS  = {
     "1" : "MALE",
     "2" : "FEMALE",
@@ -37,11 +36,38 @@ class User(AbstractUser):
         return self.first_name + self.middle_name + self.last_name
 
 
+class Statistics(models.Model):
+
+    registered_users = models.IntegerField()
+    total_amount_paid = models.BigIntegerField()
+    total_users_benefited = models.IntegerField()
+
+    class Meta:
+        verbose_name = 'Statistics'
+        verbose_name_plural = 'Statistics'
+
+    def __str__(self):
+        return self.name
+
+
 class Scheme(models.Model):
     name = models.CharField(max_length=50, blank=False)
-    
-    # todo : complete this task
+    desc = models.CharField()
+    eligible_genders = models.CharField()
+    eligible_casts = models.CharField()
+    min_annual_income = models.BigIntegerField()
+    max_annual_income = models.BigIntegerField()
+    min_age = models.IntegerField()
+    max_age = models.IntegerField()
+    min_family_members = models.IntegerField()
+    max_family_members = models.IntegerField()
+    eligible_states = models.CharField()
+    eligible_districts = models.CharField()
+    eligible_cities = models.CharField()
+    eligible_pincodes = models.CharField()
+    stats = models.ForeignKey(Statistics, on_delete=models.CASCADE)
 
+    
     class Meta:
         verbose_name = 'Scheme'
         verbose_name_plural = 'Schemes'
