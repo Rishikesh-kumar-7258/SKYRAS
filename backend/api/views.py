@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .serializers import UserSerializer
-from .models import User
+from .models import User, Scheme
 
 # Create your views here.
 @api_view(["GET"])
@@ -73,17 +73,22 @@ def logout_user(request):
 # api to get user details
 @api_view(["GET"])
 def get_user_details(request):
-    # todo : get user details
-    pass
+
+    current_user = request.user.id
+    user = User.objects.get(id=current_user)
+    
+    return Response(user)
 
 # api to get scheme details
 @api_view(["GET"])
-def get_scheme_details(request):
-    # todo : get scheme details
-    pass
+def get_scheme_details(request, scheme_id):
+    
+    scheme = Scheme.objects.get(id=scheme_id)
+    return Response(scheme)
 
 # api to get all schemes names + stats
 @api_view(["GET"])
 def get_all_schemes(request):
-    # todo : get all schemes names + stats
-    pass
+    
+    schemes = Scheme.objects.all()
+    return Response(schemes)
