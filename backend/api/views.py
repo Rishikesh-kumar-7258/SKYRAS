@@ -5,7 +5,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
-from .serializers import UserSerializer
 from .models import User, Scheme
 
 # Create your views here.
@@ -29,10 +28,10 @@ def create_user(request):
         email = request.data['email']
 
 
-        user = User.objects.create_user(username, email, password)
-        user.first_name = first_name
-        user.last_name = last_name
-        user.middle_name - middle_name
+        # user = User.objects.create_user(username, email, password)
+        # user.first_name = first_name
+        # user.last_name = last_name
+        # user.middle_name - middle_name
 
         # todo : Add different fields from the user form like user.middle_name= middle_name
 
