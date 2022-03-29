@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
@@ -6,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .models import User, Scheme
+from .serializers import UserSerializer, SchemeSerializer, StatisticsSerializer
 
 # Create your views here.
 @api_view(["GET"])
@@ -26,14 +28,35 @@ def create_user(request):
         # getting form data
         username = request.data['username']
         email = request.data['email']
+        password = request.data['password']
+        first_name = request.data['first_name']
+        last_name = request.data['last_name']
+        middle_name = request.data['middle_name']
+        phone_number = request.data['phone_number']
+        address = request.data['address']
+        city = request.data['city']
+        state = request.data['state']
+        pin_code = request.data['pin_code']
+        district = request.data['district']
+        aadhar_number = request.data['aadhar_number']
+        gender = request.data['gender']
+        dob = request.data['dob']
+        cat = request.data['category']
 
 
-        # user = User.objects.create_user(username, email, password)
-        # user.first_name = first_name
-        # user.last_name = last_name
-        # user.middle_name - middle_name
-
-        # todo : Add different fields from the user form like user.middle_name= middle_name
+        user = User.objects.create_user(username, email, password)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.middle_name - middle_name
+        user.phone_number = phone_number
+        user.address = address
+        user.city = city
+        user.state = state
+        user.pin_code = pin_code
+        user.district = district
+        user.aadhar_number = aadhar_number
+        user.dob = dob
+        user.category = cat
 
         user.save()
         return Response("User saved successfully")
@@ -74,20 +97,22 @@ def logout_user(request):
 def get_user_details(request):
 
     current_user = request.user.id
-    user = User.objects.get(id=current_user)
+    serializer = UserSerializer(current_user)
     
-    return Response(user)
+    return Response(serializer)
 
 # api to get scheme details
 @api_view(["GET"])
 def get_scheme_details(request, scheme_id):
     
     scheme = Scheme.objects.get(id=scheme_id)
-    return Response(scheme)
+    serializer = SchemeSerializer(scheme)
+    return Response(serializer)
 
 # api to get all schemes names + stats
 @api_view(["GET"])
 def get_all_schemes(request):
     
     schemes = Scheme.objects.all()
-    return Response(schemes)
+    serializer = SchemeSerializer(schemes, many=True)
+    return Response(serializer)
