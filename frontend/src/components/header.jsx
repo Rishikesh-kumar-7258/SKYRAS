@@ -2,13 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
+import tricolor from "../images/indian_flag.jpg";
 
 const Header = () => {
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Navbar</Link>
+                    <Link className="navbar-brand" to="/" >
+                        <img src={tricolor} alt="Flag" width="40" height="32"/>
+                    </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -30,7 +33,7 @@ const Header = () => {
                                 <Link className="nav-link" to="/">Log Out</Link>
                             </li>
                             <li>
-                                <Link className="nav-link text-white fs-5" to="/"><FontAwesomeIcon icon={faUserCircle}/></Link>
+                                <Link className="nav-link fs-5" to="/"><FontAwesomeIcon icon={faUserCircle}/></Link>
                             </li>
                         </ul>
                     </div>
