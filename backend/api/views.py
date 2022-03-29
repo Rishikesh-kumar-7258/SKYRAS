@@ -5,8 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
-from .serializers import UserSerializer
-from .models import User
+from .models import User, Scheme
 
 # Create your views here.
 @api_view(["GET"])
@@ -43,27 +42,10 @@ def create_user(request):
         middle_name = request.data['middle_name']
 
 
-        user = User.objects.create_user(username, email, password)
-        user.first_name = first_name
-        user.last_name = last_name
-        user.middle_name = middle_name
-        user.email = email
-        user.password = password
-        user.address = address 
-        user.city = city
-        user.state = state
-        user.pin_code = pin_code
-        user.district = district
-        user.adhaar_number = adhaar_number
-        user.phone_number = phone_number
-        user.gender = gender
-        user.dob = dob
-        user.category = category
-        
-
-
-
-
+        # user = User.objects.create_user(username, email, password)
+        # user.first_name = first_name
+        # user.last_name = last_name
+        # user.middle_name - middle_name
 
         # todo : Add different fields from the user form like user.middle_name= middle_name
 
