@@ -22,7 +22,7 @@ Agriculture, FoodTech and Rural Development
 
 Web Dev | Technology and laguage used
 ---------- | --------------
-Front End | React, Javascript
+Front End | React, Javascript, HTML, CSS
 Back End | Django, Python
 DataBase | MongoDB
 
