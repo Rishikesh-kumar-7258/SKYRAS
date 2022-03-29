@@ -20,7 +20,7 @@ const Home = () => {
     return (
         <div className="container-fluid">
             <Header />
-            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExampleControls" className="carousel slide mt-3" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img src={Kisaan} className='img-fluid' alt="Kisaan" />

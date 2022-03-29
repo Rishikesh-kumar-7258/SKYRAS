@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faUser} from '@fortawesome/free-solid-svg-icons'
+import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 
 const Header = () => {
     return (
@@ -30,7 +30,7 @@ const Header = () => {
                                 <Link className="nav-link" to="/">Log Out</Link>
                             </li>
                             <li>
-                                <Link className="nav-link text-white" to="/"><FontAwesomeIcon icon={faUser}/></Link>
+                                <Link className="nav-link text-white fs-5" to="/"><FontAwesomeIcon icon={faUserCircle}/></Link>
                             </li>
                         </ul>
                     </div>

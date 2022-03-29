@@ -12,3 +12,16 @@
 .btn-yellow:hover{
     background-color : #e29b00;
 }
+body{
+    margin : 0;
+    padding : 0;
+}
+.main-body{
+    /* background-color : green; */
+    margin : 0;
+    padding : 0;
+    background-image: url("../src/images/sandy-zebua-a7n65pmnJ4Q-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
