@@ -1,0 +1,14 @@
+.transform-up{
+    transform : translate(0, -50%);
+}
+
+.btn-yellow {
+    background-color : #feb822;
+    border : 1px solid #feb822;
+    color : white;
+    font-weight: bolder;
+}
+
+.btn-yellow:hover{
+    background-color : #e29b00;
+}
