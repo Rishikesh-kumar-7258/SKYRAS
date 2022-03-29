@@ -1,0 +1,24 @@
+body{
+    margin : 0;
+    padding : 0;
+}
+.main-body{
+    /* background-color : green; */
+    margin : 0;
+    padding : 0;
+    background-image: url("../images/sandy-zebua-a7n65pmnJ4Q-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.btn-yellow{
+    background-color : #feb822;
+    transition : transform .5s linear;
+}
+.btn-yellow:hover{
+    background-color : #eba103;
+}
+.btn-yellow:active{
+    transform : scale(0.95);
+}
