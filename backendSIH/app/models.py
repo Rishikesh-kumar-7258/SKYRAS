@@ -1,25 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class User(models.Model):
-    userID = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    firstName = models.CharField(max_length=50)
-    middleName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50)
-    birthDate = models.DateField()
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    middleName = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(upload_to='profile_pics', blank=True)
     state = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
     pin = models.CharField(max_length=50)
     contactNumber = models.CharField(max_length=50)
-    createdDate = models.DateField()
-    updatedDate = models.DateField()
 
     def __str__(self):
-        return self.username
+        return str(self.user)
 
 
 class Document(models.Model):
@@ -27,10 +21,10 @@ class Document(models.Model):
     name = models.CharField(max_length=50)
     documentType = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
-    path = models.CharField(max_length=50)
+    file = models.FileField()
     date = models.DateField()
     status = models.CharField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

@@ -1,5 +1,10 @@
 from django.shortcuts import render
 
+from .forms import DocumentForm
+
 
 def index(request):
-    return render(request, 'index.html')
+    documentForm = DocumentForm()
+    return render(request, 'index.html', {
+        'form': documentForm
+    })
