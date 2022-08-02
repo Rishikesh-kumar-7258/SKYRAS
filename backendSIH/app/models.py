@@ -25,7 +25,7 @@ class User(models.Model):
 class Document(models.Model):
     documentID = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
+    documentType = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
     path = models.CharField(max_length=50)
     date = models.DateField()
