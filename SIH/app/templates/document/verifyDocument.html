@@ -1,0 +1,10 @@
+{% include 'base.html' %}
+
+{% block body %}
+<h1>Verify Document</h1>
+<form method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button type="submit" class="btn btn-success">Verify</button>
+</form>
+{% endblock body %}
