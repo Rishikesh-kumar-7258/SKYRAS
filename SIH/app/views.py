@@ -1,9 +1,14 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Document
 from .forms import PostForm
 
 
+class HomePage(TemplateView):
+    template_name = "home.html"
+
+
+# Document related views
 class viewDocument(ListView):
     model = Document
     template_name = "document/viewDocuments.html"
@@ -23,7 +28,26 @@ class verifyDocument(UpdateView):
     fields = ['verified']
     success_url = '/'
 
+
 class deleteDocument(DeleteView):
     model = Document
     template_name = "document/deleteDocument.html"
     success_url = '/'
+
+
+# url for signin
+class SignIn(TemplateView):
+    template_name = "users/signIn.html"
+
+# urls for signup
+
+
+class SignUp(TemplateView):
+    template_name: str = "users/register.html"
+
+
+class FogotPassword(TemplateView):
+    template_name: str = "users/forgotPassword.html"
+
+class CompleteProfile(TemplateView):
+    template_name: str = "users/completeProfile.html"
