@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
-from .models import Document
+from .models import Document, Scheme
 from .forms import PostForm, RegisterForm
 from django.contrib.auth.models import User
 
@@ -36,12 +36,6 @@ class deleteDocument(DeleteView):
     success_url = '/'
 
 
-# url for signin
-class SignIn(TemplateView):
-    template_name = "users/signIn.html"
-
-# urls for signup
-
 
 class SignUp(CreateView):
     model = User
@@ -49,14 +43,38 @@ class SignUp(CreateView):
     template_name: str = "users/register.html"
     success_url = '/'
 
+# url for resetting password
+
 
 class FogotPassword(TemplateView):
     template_name: str = "users/forgotPassword.html"
+
+# url for completing the profile page
 
 
 class CompleteProfile(TemplateView):
     template_name: str = "users/completeProfile.html"
 
+# url to go to profile page
+
 
 class Profile(TemplateView):
     template_name: str = "users/profile.html"
+
+
+class Schemes(ListView):
+    model = Scheme
+    template_name = "scheme.html"
+    queryset = Scheme.objects.all()
+
+
+class Help(TemplateView):
+    template_name = "help.html"
+
+
+class AboutUs(TemplateView):
+    template_name = "aboutUs.html"
+
+
+class ContactUs(TemplateView):
+    template_name = "contactUs.html"
