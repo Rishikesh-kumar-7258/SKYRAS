@@ -95,9 +95,22 @@
 
                     <!-- About Us Closed -->
                     <!-- Sign In Tab -->
-                    <li class="nav-item2  d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Sign In</a>
-                    </li>
+                    {% if user.is_authenticated == False %}
+                        <li class="nav-item2  d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Sign In</a>
+                        </li>
+                    {% else%}
+                        <div class="dropdown">
+                            <button class="nav-item btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{user}}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                <hr>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </div>
+                    {% endif %}
                     <!-- Sign In Tab Closed -->
                 </ul>
             </div>

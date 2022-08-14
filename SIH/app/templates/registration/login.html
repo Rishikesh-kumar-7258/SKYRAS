@@ -36,15 +36,15 @@
           <p class="text-center h4 bg-primary text-white p-2 m-0 px-5">SignIn</p>
         </div>
       </div>
-      <form class="row p-5 border" style="background-color: #EFF4FF;">
+      <form class="row p-5 border" style="background-color: #EFF4FF;" method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="col-12 mb-3">
           <label for="username">Username</label>
-          {% render_field form.username type="text" class="form-control" id="username" placeholder="Enter username" %} 
+          {% render_field form.username type="text" class="form-control" name="username" id="username" placeholder="Enter username" %} 
         </div>
         <div class="col-12 mb-3">
           <label for="password">Password</label>
-          {% render_field form.password type="password" class="form-control" id="password" placeholder="Enter password" %}
+          {% render_field form.password type="password" class="form-control" name="password" id="password" placeholder="Enter password" %}
           <div class="d-flex justify-content-end align-items-center">
             <a href="{% url 'forgotPassword' %}" class="text-decoration-none text-end">Forgot Password?</a>
           </div>

@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, T
 from .models import Document, Scheme
 from .forms import PostForm, RegisterForm
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 
 
 class HomePage(TemplateView):
@@ -41,7 +42,7 @@ class SignUp(CreateView):
     model = User
     form_class = RegisterForm
     template_name: str = "users/register.html"
-    success_url = '/'
+    success_url = reverse_lazy('login')
 
 # url for resetting password
 
