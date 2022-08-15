@@ -1,0 +1,65 @@
+{% include 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}
+<title>Create Scheme</title>
+{% endblock title %}
+
+
+{% block body %}
+
+<!-- Header section same as the other pages  -->
+<header class="row">
+  <nav class="col-12 p-2" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Add Scheme</li>
+    </ol>
+  </nav>
+</header>
+<!-- End Header section -->
+
+<section class="row">
+  <div class="col-12 col-md-4 offset-md-4 col-sm-6 offset-md-3">
+    <div class="row">
+      <div class="col-12">
+        <h1>Add Scheme</h1>
+      </div>
+    </div>
+    <form action="{% url 'addScheme' %}" method="POST" class="row shadow p-5" enctype="multipart/form-data"
+      style="background-color: #EFF4FF;">
+      {% csrf_token %}
+      <div class="form-group mb-3 col-12">
+        <label for="name">Name</label>
+        {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter name of Scheme"%}
+      </div>
+      <div class="form-group mb-3 col-12">
+        <label for="desc">Description</label>
+        {% render_field form.desc id="desc" class="form-control" placeholder="Enter description of Scheme"%}
+      </div>
+      <div class="form-group mb-3 col-6">
+        <label for="sdate">Start Date</label>
+        {% render_field form.startDate type="date" id="sdate" class="form-control" placeholder="Enter Start date"%}
+      </div>
+      <div class="form-group mb-3 col-6">
+        <label for="edate">End Date</label>
+        {% render_field form.endDate type="date" id="edate" class="form-control" placeholder="Enter End date"%}
+      </div>
+      <div class="form-group mb-3 col-12">
+        <label for="img">Image</label>
+        {% render_field form.img type="file" id="img" class="form-control"%}
+      </div>
+      <div class="form-group mb-3 col-12">
+        <label for="category">Category</label>
+        {% render_field form.category id="category" class="form-control" placeholder="Select category for scheme"%}
+      </div>
+
+      {% comment %} {{form.as_p}} {% endcomment %}
+      <div class="form-group mb-3 col-12">
+        <button type="submit" class="btn btn-success w-100">Create</button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock body %}

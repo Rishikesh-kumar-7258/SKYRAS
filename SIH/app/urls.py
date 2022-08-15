@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AboutUs, CompleteProfile, ContactUs, Profile, Schemes, SignUp, addDocument, deleteDocument, verifyDocument, viewDocument, HomePage, FogotPassword, Help
+from .views import AboutUs, CompleteProfile, ContactUs, Profile, Schemes, SignUp, addDocument, deleteDocument, verifyDocument, viewDocument, HomePage, FogotPassword, Help, CreateScheme
 
 urlpatterns = [
     path('', HomePage.as_view(), name="homepage"),
@@ -20,6 +20,7 @@ urlpatterns = [
 
     # scheme related urls
     path('allSchemes/', Schemes.as_view(), name="schemes"),
+    path('addScheme/', CreateScheme.as_view(), name="addScheme"),
 
     # help related url
     path("help/", Help.as_view(), name="help"),
@@ -28,5 +29,7 @@ urlpatterns = [
     path("aboutUs/", AboutUs.as_view(), name="aboutUs"),
 
     # contactUs
-    path("contactUs/", ContactUs.as_view(), name="contactUs")
+    path("contactUs/", ContactUs.as_view(), name="contactUs"),
+
+
 ]

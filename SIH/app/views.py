@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Document, Scheme
-from .forms import PostForm, RegisterForm
+from .forms import PostForm, RegisterForm, CreateSchemeForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 
@@ -35,7 +34,6 @@ class deleteDocument(DeleteView):
     model = Document
     template_name = "document/deleteDocument.html"
     success_url = '/'
-
 
 
 class SignUp(CreateView):
@@ -79,3 +77,10 @@ class AboutUs(TemplateView):
 
 class ContactUs(TemplateView):
     template_name = "contactUs.html"
+
+
+class CreateScheme(CreateView):
+    model = Scheme
+    form_class = CreateSchemeForm
+    template_name = "schemes/create.html"
+    success_url = "/"

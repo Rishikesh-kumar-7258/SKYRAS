@@ -1,6 +1,6 @@
-from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import datetime
 
 GENDER_CHOICES = (
     ('M', "Male"),
@@ -23,6 +23,7 @@ class Document(models.Model):
     file = models.FileField(upload_to='documents/')
     verified = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -45,18 +46,26 @@ class Profile(models.Model):
     adhaar_number = models.BigIntegerField()
     phone_number = models.CharField(max_length=12)
 
+    def __str__(self) -> str:
+        return self.user
+
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
     desc = models.TextField(blank=True)
     created_date = models.DateField(auto_now=True)
-    
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Scheme(models.Model):
     name = models.CharField(max_length=50)
     desc = models.TextField()
     startDate = models.DateField()
-    endData = models.DateField()
-    img = models.ImageField()
+    endDate = models.DateField()
+    img = models.ImageField(upload_to="scheme/")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-
+    def __str__(self) -> str:
+        return self.name

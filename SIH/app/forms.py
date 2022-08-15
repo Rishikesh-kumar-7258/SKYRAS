@@ -1,5 +1,5 @@
 from django import forms
-from .models import Document
+from .models import Document, Scheme
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -32,3 +32,9 @@ class RegisterForm(UserCreationForm):
             "password1",
             "password2"
         ]
+
+
+class CreateSchemeForm(forms.ModelForm):
+    class Meta:
+        model = Scheme
+        fields = "__all__"
