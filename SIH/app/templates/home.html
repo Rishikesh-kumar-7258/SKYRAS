@@ -6,11 +6,10 @@
 {% block body %}
 
 <!-- Header  -->
-<header>
-    <!-- line for alphabet and language -->
+<header class="row">
 
-    <div class=" bg-warning row border py-2">
-        <div class="col-12 d-flex justify-content-end align-items-center">
+    <!-- line for alphabet and language -->
+    <div class="bg-warning col-12 py-2 d-flex justify-content-end align-items-center">
             <div>
                 <button class="btn">A-</button>
                 <button class="btn">A</button>
@@ -19,9 +18,9 @@
                 <button class="btn">A</button>
                 <button class="btn">A</button> {% endcomment %}
             </div>
-            <div class="mx-3">
+            <div class="d-flex align-items-center">
                 <label for="page_language">Language:</label>
-                <select id="page_language">
+                <select id="page_language" class="form-select">
                     <option value="en">English</option>
                     <option value="hin">Hindi</option>
                     <option value="tel">Telugu</option>
@@ -31,14 +30,11 @@
                     <option value="mar">Marathi</option>
                 </select>
             </div>
-        </div>
     </div>
-
     <!-- End line for alphabet and language -->
 
     <!--container for logo and heading-->
-    <div style="background-color: #FAE5D3;" class="container-fluid middlehead mt-0">
-        <div class="row justify-content-evenly">
+    <div style="background-color: #FAE5D3;" class="col-12 middlehead mt-0 d-flex justify-content-evenly">
             <div class="col-sm-2 col-s-12 d-flex align-items-center justify-content-center">
                 <div class="logo mt-3">
                     <img src="{% static '/img/logo_1.jpeg'%}" style="width:150px;height:150px;margin-bottom:10px;"
@@ -58,7 +54,6 @@
                         alt="">
                 </div>
             </div>
-        </div>
     </div>
     <!-- End container for logo and heading-->
 
@@ -128,9 +123,7 @@
 <!-- End Header  -->
 
 <!--Slides-->
-<div class="slider">
-    <div class="fluid-container">
-        <div class="row">
+<div class="slider row">
             <div class="col-md-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                     <div class="carousel-indicators">
@@ -167,30 +160,24 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
 </div>
 <!-- End Slides  -->
 
-</div>
 <!--Video section-->
-<div class="container-fluid video_section">
-    <div class="row">
+<div class="row video_section">
+    <div class="col-12">
 
     </div>
 </div>
 
 <!--Cards -->
-<div class=" border border-2-dark mt-5 mb-5 container-fluid">
-    <div class="p-3 container-fluid stats">
-        <section>
-            <div class="justify-content-center align item center">
+<div class="border my-5 row">
+    <div class="p-3 col-12 d-flex justify-content-center align-item-center">
                 <h1 style="text-align:center;">लाभार्थियों के लिए योजनाएं</h1>
                 <h1 style="text-align:center;">Schemes For Beneficiary</h1>
-            </div>
-        </section>
     </div>
-    <div class="row justify-content-space-between">
+    <div class="col-12 border">
+    <div class="row">
         <div class="col-sm-3 col-sx-12 p-3">
             <div class="card border border-4 border-primary" style="width: 18rem;">
                 <img src="{% static '/img/card1.jpg' %}" class="card-img-top" alt="...">
@@ -261,6 +248,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 <!--End Cards -->

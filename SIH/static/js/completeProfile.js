@@ -1,13 +1,30 @@
 // some variables
 let visibleFormNumber = 1;
 const insideBar = document.querySelector(".inside");
+const buttons = document.querySelectorAll("button")
 
 //preventing forms from getting submitted
-document.querySelectorAll("form").forEach((e) => {
-  e.addEventListener("submit", (t) => {
-    t.preventDefault();
-  });
-});
+// document.querySelectorAll("form").forEach((e) => {
+//   e.addEventListener("submit", (t) => {
+//     t.preventDefault();
+//   });
+// });
+
+// clicking on first button
+console.log(buttons);
+buttons.forEach((e,i) => {
+
+  e.addEventListener("click", function() {
+    if (i&1 === 0) {
+      visibleFormNumber++;
+    }
+    else{
+      visibleFormNumber--;
+    }
+  })
+
+  showForm(visibleFormNumber);
+})
 
 // onclicking the circle
 document.querySelectorAll(".circle").forEach((e, i) => {
@@ -23,17 +40,6 @@ document.querySelectorAll(".circle").forEach((e, i) => {
   };
 });
 
-// Clicking on the first next button
-document.querySelector("#personal-details button").onclick = function () {
-  visibleFormNumber++;
-  showForm(visibleFormNumber);
-};
-
-// clicking on second next button
-document.querySelector("#contact-details button").onclick = function () {
-  visibleFormNumber++;
-  showForm(visibleFormNumber);
-};
 
 // clicking on the submit button
 

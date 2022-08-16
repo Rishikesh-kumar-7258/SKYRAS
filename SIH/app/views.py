@@ -63,7 +63,7 @@ class Profile(TemplateView):
 
 class Schemes(ListView):
     model = Scheme
-    template_name = "scheme.html"
+    template_name = "schemes/scheme.html"
     queryset = Scheme.objects.all()
 
 
