@@ -20,7 +20,7 @@ urlpatterns = [
 
     # scheme related urls
     path('allSchemes/', Schemes.as_view(), name="schemes"),
-    path('addScheme/', CreateScheme.as_view(), name="addScheme"),
+    path('addScheme/', CreateScheme, name="addScheme"),
 
     # help related url
     path("help/", Help.as_view(), name="help"),

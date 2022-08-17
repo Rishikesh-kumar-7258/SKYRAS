@@ -3,6 +3,9 @@ from .models import Document, Scheme
 from .forms import PostForm, RegisterForm, CreateSchemeForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
+from .sendEmail import send_mail
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
 
 class HomePage(TemplateView):
@@ -79,8 +82,42 @@ class ContactUs(TemplateView):
     template_name = "contactUs.html"
 
 
-class CreateScheme(CreateView):
-    model = Scheme
-    form_class = CreateSchemeForm
-    template_name = "schemes/create.html"
-    success_url = "/"
+def show_what_is_happening(a, b):
+    print(a, type(a))
+    print(b, type(b))
+
+
+# class CreateScheme(CreateView):
+#     model = Scheme
+#     form_class = CreateSchemeForm
+#     template_name = "schemes/create.html"
+#     success_url = "/"
+
+#     # sending mails whenever a scheme is created
+#     superusers_emails = User.objects.filter(
+#         is_superuser=True).values_list('email')
+#     receivers = [email[0] for email in list(superusers_emails)]
+#     subject = "New scheme created"
+#     body = "A new scheme is created please visit the website to know more"
+#     # object_change = send_mail(receivers, subject, body)
+
+# function based view to createscheme
+def CreateScheme(request):
+
+    if request.method == "POST":
+        form = CreateSchemeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # sending mails whenever a scheme is created
+            superusers_emails = User.objects.filter(
+                is_superuser=True).values_list('email')
+            receivers = [email[0] for email in list(superusers_emails)]
+            subject = "New scheme created"
+            body = "A new scheme is created please visit the website to know more"
+            send_mail(receivers, subject, body)
+            return redirect('homepage')
+        else:
+            return HttpResponse("Invalid form")
+    else:
+        form = CreateSchemeForm()
+    return render(request, "schemes/create.html", {"form": form})
