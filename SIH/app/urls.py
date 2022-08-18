@@ -14,7 +14,6 @@ urlpatterns = [
 
     # user related urls
     path('register', SignUp.as_view(), name="register"),
-    path('forgotPassword/', FogotPassword.as_view(), name="forgotPassword"),
     path('completeProfile/', CompleteProfile, name="completeProfile"),
     path('profile/', ProfileView.as_view(), name="profile"),
     path('editProfilePic/<int:pk>',
@@ -24,7 +23,7 @@ urlpatterns = [
     path('allSchemes/', Schemes.as_view(), name="schemes"),
     path('addScheme/', CreateScheme, name="addScheme"),
 
-    # help related url
+    # help url
     path("help/", Help.as_view(), name="help"),
 
     # about us

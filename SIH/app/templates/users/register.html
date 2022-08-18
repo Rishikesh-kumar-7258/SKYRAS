@@ -62,6 +62,14 @@
           <label for="password2">Confirm Password</label>
           {%render_field form.password2 class="form-control" id="password2" placeholder="Confirm passwrd" type="password"%}
         </div>
+        <div class="col-6 form-group mb-3">
+          <label for="captcha">Captcha</label>
+          {%render_field form.captcha class="form-control" id="captcha" placeholder="Enter captcha"%}
+        </div>
+
+        <div class="col-6 mb-3 d-flex align-items-end">
+          <button type="button" class='captcha btn btn-primary'>Refresh Captcha</button>
+        </div>
         <div class="col-12">
           <button type="submit" class="btn btn-success w-100">Register</button>
         </div>
@@ -80,3 +88,14 @@
   </Footer>
   <!-- End Footer  -->
 {% endblock body %}
+
+{% block js %}
+<script>
+$('.captcha').click(function () {
+    $.getJSON("/captcha/refresh/", function (result) {
+        $('.captcha').attr('src', result['image_url']);
+        $('#id_captcha_0').val(result['key'])
+    });
+});
+</script>
+{% endblock js %}

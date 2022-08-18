@@ -46,9 +46,13 @@
           <label for="password">Password</label>
           {% render_field form.password type="password" class="form-control" name="password" id="password" placeholder="Enter password" %}
           <div class="d-flex justify-content-end align-items-center">
-            <a href="{% url 'forgotPassword' %}" class="text-decoration-none text-end">Forgot Password?</a>
+            <a href="{% url 'password_reset' %}" class="text-decoration-none text-end">Forgot Password?</a>
           </div>
         </div>
+        {% comment %} <div class="col-12 mb-3">
+          <label for="captcha">Captcha</label>
+          {% render_field form.captcha class="form-control" name="captcha" id="captcha" placeholder="Enter captcha" %} 
+        </div> {% endcomment %}
         <div class="col-12">
           <button type="submit" class="btn btn-success w-100">Log In</button>
         </div>
