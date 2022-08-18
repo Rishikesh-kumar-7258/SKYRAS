@@ -1,0 +1,10 @@
+{% include 'base.html' %}
+
+{% block body %}
+<h1>Add Document </h1>
+<form method="POST" action="{% url 'addDocument' %}" enctype="multipart/form-data" class="container">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button type="submit" class="btn btn-primary">Add Document</button>
+</form>
+{% endblock body %}

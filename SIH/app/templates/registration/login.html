@@ -1,0 +1,72 @@
+{% include 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+<title>Login</title>
+{% endblock title %}
+
+{% block css %}
+<style>
+    .signInSection {
+      background-image: url("https://source.unsplash.com/random?land");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
+{% endblock css %}
+
+{% block body %}
+<!-- Header section same as the other pages  -->
+  <header class="row">
+    <nav class="col-12 p-2" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">SignIn</li>
+      </ol>
+    </nav>
+  </header>
+  <!-- End Header section -->
+
+  <!-- SignIn section  -->
+  <section class="row signInSection p-5 shadow">
+    <div class="col-12 col-md-4 offset-md-4 col-sm-6 offset-md-3">
+      <div class="row">
+        <div class="col-12 d-flex m-0 p-0">
+          <p class="text-center h4 bg-primary text-white p-2 m-0 px-5">SignIn</p>
+        </div>
+      </div>
+      <form class="row p-5 border" style="background-color: #EFF4FF;" method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="col-12 mb-3">
+          <label for="username">Username</label>
+          {% render_field form.username type="text" class="form-control" name="username" id="username" placeholder="Enter username" %} 
+        </div>
+        <div class="col-12 mb-3">
+          <label for="password">Password</label>
+          {% render_field form.password type="password" class="form-control" name="password" id="password" placeholder="Enter password" %}
+          <div class="d-flex justify-content-end align-items-center">
+            <a href="{% url 'forgotPassword' %}" class="text-decoration-none text-end">Forgot Password?</a>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-success w-100">Log In</button>
+        </div>
+        <div class="col-12">
+          <p class="text-center">Don't have an account? <a href="{% url 'register' %}"
+              class="text-decoration-none">SignUp</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- End SignIn section -->
+
+  <!-- Footer  -->
+  <Footer>
+
+  </Footer>
+  <!-- End Footer  -->
+
+
+{% endblock body %}

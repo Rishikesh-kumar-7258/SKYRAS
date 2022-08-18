@@ -1,0 +1,155 @@
+{% load static %}
+{% include 'base.html' %}
+
+{% block title %}
+<title>Complete Profile | SIH</title>
+{% endblock title %}
+
+
+
+{% block css %}
+<link href="{% static '/css/completeProfile.css' %}" rel="stylesheet">
+{% endblock css %}
+
+
+{% block body %}
+
+  <!-- Header section same as the other pages -->
+  <header class="row">
+    <nav class="col-12 p-2" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Complete Profile</li>
+      </ol>
+    </nav>
+  </header>
+  <!-- End Header section -->
+
+  <!-- Which form you are at  -->
+  <div class="row position-relative mx-5 my-2">
+    <div class="stick"></div>
+    <div class="inside stick"></div>
+    <div class="col-12 d-flex align-items-center justify-content-between p-0">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+  </div>
+  <!-- Which form you are at  End -->
+
+  <!-- Register section  -->
+  <section class="row completeProfileSection p-5 shadow">
+    <div class="col-12 col-md-6 offset-md-3">
+      <div class="row">
+        <div class="col-12 d-flex m-0 p-0">
+          <p class="text-center h4 bg-primary text-white p-2 m-0 px-5">Complete Profile</p>
+        </div>
+      </div>
+      <form class="row p-5 border" id="personal-details" style="background-color: #EFF4FF;">
+        <div class="col-12">
+          <p class="display-6 fw-bolder">Personal Details</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="fname">First Name</label>
+          <input type="text" class="form-control" id="fname" placeholder="Enter First name">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="mname">Middle Name</label>
+          <input type="text" class="form-control" id="mname" placeholder="Enter middle name">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lname">Last Name</label>
+          <input type="text" class="form-control" id="lname" placeholder="Enter Last name">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="gender">Gender</label>
+          <select name="gender" id="gender" class="form-control">
+            <option value="">--select--</option>
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+            <option value="o">Other</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="dob">Date of Birth</label>
+          <input type="date" name="dob" id="dob" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="category">Category</label>
+          <select name="category" id="category" class="form-control">
+            <option value="">--select--</option>
+            <option value="gen">General</option>
+            <option value="obc">OBC</option>
+            <option value="sc">SC</option>
+            <option value="st">ST</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="adhaar">Adhaar Number</label>
+          <input type="number" class="form-control" id="adhaar" placeholder="Enter adhaar number">
+        </div>
+        <div class="col-12">
+          <button class="btn btn-success w-100">Next</button>
+        </div>
+      </form>
+      <form class="row p-5 border d-none" id="contact-details" style="background-color : #EFF4FF;">
+        <div class="col-12">
+          <p class="display-6 fw-bolder">Personal Details</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="phone">Phone Number</label>
+          <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter phone number">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="alt-phone">Alternate Phone Number</label>
+          <input type="number" class="form-control" name="alt-phone" id="alt-phone"
+            placeholder="Enter alternate phone number">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+        </div>
+        <div class="col-12 d-flex">
+          <button  class="btn btn-success" style="flex : 1">Prev</button>
+          <button  class="btn btn-success" style="flex : 1">Next</button>
+        </div>
+      </form>
+      <form class="row p-5 border d-none" id="address-details" style="background-color : #EFF4FF;">
+        <div class="col-12">
+          <p class="display-6 fw-bolder">Address Details</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="state">State</label>
+          <input type="text" name="state" id="state" class="form-control" placeholder="Enter state">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="city">City</label>
+          <input type="text" name="city" id="city" class="form-control" placeholder="Enter City">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="district">District</label>
+          <input type="text" name="district" id="district" class="form-control" placeholder="Enter District">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="pin">Pin Code</label>
+          <input type="number" name="pin" id="pin" class="form-control" placeholder="Enter Pin code">
+        </div>
+        <div class="col-12 d-flex">
+          <button class="btn btn-success" style="flex : 1;">Prev</button>
+          <button type="submit" class="btn btn-success" style="flex : 1;">Submit</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- End register section -->
+
+  <!-- Footer  -->
+  <Footer>
+
+  </Footer>
+  <!-- End Footer  -->
+{% endblock body %}
+
+{% block js %}
+<script src="{% static '/js/completeProfile.js' %}"></script>
+{% endblock js %}

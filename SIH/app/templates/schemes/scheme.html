@@ -1,0 +1,8 @@
+{% include 'base.html' %}
+
+{% block body %}
+<h1>All Scheme List</h1>
+{% for scheme in object_list %}
+    {{scheme.name}}
+{% endfor %}
+{% endblock body %}

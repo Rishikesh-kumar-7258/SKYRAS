@@ -1,0 +1,82 @@
+{% load static %}
+{% load widget_tweaks %}
+{% include 'base.html' %}
+{% block title %}
+<title>Register | SIH </title>
+{% endblock title %}
+
+{% block css %}
+<style>
+    .registerSection {
+      background-image: url("https://source.unsplash.com/random?land");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
+{% endblock css %}
+
+{% block body %}
+  <!-- Header section same as the other pages  -->
+  <header class="row">
+    <nav class="col-12 p-2" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Register</li>
+      </ol>
+    </nav>
+  </header>
+  <!-- End Header section -->
+
+  <!-- Register section  -->
+  <section class="row registerSection p-5 mt-3">
+    <div class="col-12 col-md-6 offset-md-3">
+      <div class="row">
+        <div class="col-12 d-flex m-0 p-0">
+          <p class="text-center h4 bg-primary text-white p-2 m-0 px-5">Register</p>
+        </div>
+      </div>
+      <form class="row p-5 border shadow" style="background-color: #EFF4FF;" method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="col-6 form-group mb-3">
+          <label for="fname">First Name</label>
+          {%render_field form.first_name class="form-control" id="fname" placeholder="Enter first name" type="text"%}
+        </div>
+        <div class="col-6 form-group mb-3">
+          <label for="lname">Last Name</label>
+          {%render_field form.last_name class="form-control" id="lname" placeholder="Enter last name" type="text"%}
+        </div>
+        <div class="col-12 form-group mb-3">
+          <label for="email">Email</label>
+          {%render_field form.email class="form-control" id="email" placeholder="Enter email" type="email"%}
+        </div>
+        <div class="col-12 form-group mb-3">
+          <label for="username">Username</label>
+          {%render_field form.username class="form-control" id="username" placeholder="Enter username" type="username"%}
+        </div>
+        <div class="col-12 form-group mb-3">
+          <label for="password1">Password</label>
+          {%render_field form.password1 class="form-control" id="password1" placeholder="Enter passwrd" type="password"%}
+        </div>
+        <div class="col-12 form-group mb-3">
+          <label for="password2">Confirm Password</label>
+          {%render_field form.password2 class="form-control" id="password2" placeholder="Confirm passwrd" type="password"%}
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-success w-100">Register</button>
+        </div>
+        <div class="col-12">
+          <p class="text-center">Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">SignIn</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- End register section -->
+
+  <!-- Footer  -->
+  <Footer>
+
+  </Footer>
+  <!-- End Footer  -->
+{% endblock body %}
