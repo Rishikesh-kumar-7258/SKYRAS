@@ -1,5 +1,6 @@
 {% load static %}
 {% include 'base.html' %}
+{% load widget_tweaks %}
 
 {% block title %}
 <title>Complete Profile | SIH</title>
@@ -26,7 +27,7 @@
   <!-- End Header section -->
 
   <!-- Which form you are at  -->
-  <div class="row position-relative mx-5 my-2">
+  {% comment %} <div class="row position-relative mx-5 my-2">
     <div class="stick"></div>
     <div class="inside stick"></div>
     <div class="col-12 d-flex align-items-center justify-content-between p-0">
@@ -34,7 +35,7 @@
       <div class="circle"></div>
       <div class="circle"></div>
     </div>
-  </div>
+  </div> {% endcomment %}
   <!-- Which form you are at  End -->
 
   <!-- Register section  -->
@@ -45,99 +46,21 @@
           <p class="text-center h4 bg-primary text-white p-2 m-0 px-5">Complete Profile</p>
         </div>
       </div>
-      <form class="row p-5 border" id="personal-details" style="background-color: #EFF4FF;">
-        <div class="col-12">
-          <p class="display-6 fw-bolder">Personal Details</p>
+      <form class="row border shadow p-5" action="{% url 'completeProfile' %}" method="POST" style="background-color: #EFF4FF;" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        {% comment %} <div class="form-group mb-3">
+          <label for="img">Profile Image</label>
+          {% render_field form.img id="img" class="form-control"%}
         </div>
-        <div class="col-md-6 mb-3">
-          <label for="fname">First Name</label>
-          <input type="text" class="form-control" id="fname" placeholder="Enter First name">
+        <div class="form-group mb-3">
+          <label for="user">User</label>
+          {% render_field form.user id="user" class="form-control"%}
         </div>
-        <div class="col-md-6 mb-3">
-          <label for="mname">Middle Name</label>
-          <input type="text" class="form-control" id="mname" placeholder="Enter middle name">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="lname">Last Name</label>
-          <input type="text" class="form-control" id="lname" placeholder="Enter Last name">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="gender">Gender</label>
-          <select name="gender" id="gender" class="form-control">
-            <option value="">--select--</option>
-            <option value="m">Male</option>
-            <option value="f">Female</option>
-            <option value="o">Other</option>
-          </select>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="dob">Date of Birth</label>
-          <input type="date" name="dob" id="dob" class="form-control">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="category">Category</label>
-          <select name="category" id="category" class="form-control">
-            <option value="">--select--</option>
-            <option value="gen">General</option>
-            <option value="obc">OBC</option>
-            <option value="sc">SC</option>
-            <option value="st">ST</option>
-          </select>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="adhaar">Adhaar Number</label>
-          <input type="number" class="form-control" id="adhaar" placeholder="Enter adhaar number">
-        </div>
-        <div class="col-12">
-          <button class="btn btn-success w-100">Next</button>
-        </div>
-      </form>
-      <form class="row p-5 border d-none" id="contact-details" style="background-color : #EFF4FF;">
-        <div class="col-12">
-          <p class="display-6 fw-bolder">Personal Details</p>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="phone">Phone Number</label>
-          <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter phone number">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="alt-phone">Alternate Phone Number</label>
-          <input type="number" class="form-control" name="alt-phone" id="alt-phone"
-            placeholder="Enter alternate phone number">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
-        </div>
-        <div class="col-12 d-flex">
-          <button  class="btn btn-success" style="flex : 1">Prev</button>
-          <button  class="btn btn-success" style="flex : 1">Next</button>
-        </div>
-      </form>
-      <form class="row p-5 border d-none" id="address-details" style="background-color : #EFF4FF;">
-        <div class="col-12">
-          <p class="display-6 fw-bolder">Address Details</p>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="state">State</label>
-          <input type="text" name="state" id="state" class="form-control" placeholder="Enter state">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="city">City</label>
-          <input type="text" name="city" id="city" class="form-control" placeholder="Enter City">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="district">District</label>
-          <input type="text" name="district" id="district" class="form-control" placeholder="Enter District">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="pin">Pin Code</label>
-          <input type="number" name="pin" id="pin" class="form-control" placeholder="Enter Pin code">
-        </div>
-        <div class="col-12 d-flex">
-          <button class="btn btn-success" style="flex : 1;">Prev</button>
-          <button type="submit" class="btn btn-success" style="flex : 1;">Submit</button>
-        </div>
+        {% endcomment %}
+        <div class="form-group mb-3">
+          <button type="submit" class="btn btn-success w-100">Submit</button>
+        </div> 
       </form>
     </div>
   </section>

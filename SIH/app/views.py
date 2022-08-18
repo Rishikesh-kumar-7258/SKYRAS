@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
-from .models import Document, Scheme
-from .forms import PostForm, RegisterForm, CreateSchemeForm
+from .models import Document, Scheme, Profile
+from .forms import CompleteProfileForm, EditProfilePictureForm, PostForm, RegisterForm, CreateSchemeForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .sendEmail import send_mail
@@ -54,13 +54,13 @@ class FogotPassword(TemplateView):
 # url for completing the profile page
 
 
-class CompleteProfile(TemplateView):
-    template_name: str = "users/completeProfile.html"
+# class CompleteProfile(TemplateView):
+#     template_name: str = "users/completeProfile.html"
 
 # url to go to profile page
 
 
-class Profile(TemplateView):
+class ProfileView(TemplateView):
     template_name: str = "users/profile.html"
 
 
@@ -81,12 +81,6 @@ class AboutUs(TemplateView):
 class ContactUs(TemplateView):
     template_name = "contactUs.html"
 
-
-def show_what_is_happening(a, b):
-    print(a, type(a))
-    print(b, type(b))
-
-
 # class CreateScheme(CreateView):
 #     model = Scheme
 #     form_class = CreateSchemeForm
@@ -102,6 +96,8 @@ def show_what_is_happening(a, b):
 #     # object_change = send_mail(receivers, subject, body)
 
 # function based view to createscheme
+
+
 def CreateScheme(request):
 
     if request.method == "POST":
@@ -121,3 +117,32 @@ def CreateScheme(request):
     else:
         form = CreateSchemeForm()
     return render(request, "schemes/create.html", {"form": form})
+
+
+# to create profile of the user
+def CompleteProfile(request):
+
+    if request.method == "POST":
+        form = CompleteProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("homepage")
+        else:
+            return HttpResponse("Invalid details")
+    else:
+        form = CompleteProfileForm()
+
+    return render(request, "users/completeProfile.html", {"form": form})
+
+
+def EditProfileImage(request, pk):
+
+    if request.method == "POST":
+        profile = Profile.objects.filter(id=pk).first()
+        print(profile.state)
+        profile.img = request.FILES['img']
+        profile.save()
+        return redirect("homepage")
+    else:
+        form = EditProfilePictureForm()
+        return render(request, "users/editPic.html", {"form": form})

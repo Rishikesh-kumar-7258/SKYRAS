@@ -1,5 +1,5 @@
 from django import forms
-from .models import Document, Scheme
+from .models import Document, Profile, Scheme
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -38,3 +38,14 @@ class CreateSchemeForm(forms.ModelForm):
     class Meta:
         model = Scheme
         fields = "__all__"
+
+
+class CompleteProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = "__all__"
+
+class EditProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ["img"]
