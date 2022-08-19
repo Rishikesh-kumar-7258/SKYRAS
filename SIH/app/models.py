@@ -46,7 +46,13 @@ class Profile(models.Model):
     adhaar_number = models.BigIntegerField()
     phone_number = models.CharField(max_length=12)
 
-    objects = models.Manager()
+    # educational details
+    highest_qualification = models.CharField(max_length=50)
+
+    # work details
+    occupation = models.CharField(max_length=50)
+    sector = models.CharField(max_length=50)
+    income = models.IntegerField()
 
     def __str__(self) -> str:
         return str(self.user)
@@ -68,6 +74,19 @@ class Scheme(models.Model):
     endDate = models.DateField()
     img = models.ImageField(upload_to="scheme/")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    #eligibility
+    state = models.CharField(max_length=50)
+    district = models.CharField(max_length=50)
+    age_min = models.IntegerField()
+    age_max = models.IntegerField()
+    category = models.CharField(max_length=50)
+    income_min = models.IntegerField()
+    income_max = models.IntegerField()
+    gender = models.CharField(max_length=50)
+    occupation = models.CharField(max_length=50)
+    qualification = models.CharField(max_length=50)
+    created_date = models.DateField(auto_now=True)
 
     def __str__(self) -> str:
         return str(self.name)
