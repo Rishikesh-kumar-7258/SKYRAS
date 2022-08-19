@@ -1,7 +1,6 @@
-from cmath import log
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Document, Scheme, Profile
-from .forms import CompleteProfileForm, EditProfilePictureForm, LoginForm, PostForm, RegisterForm, CreateSchemeForm
+from .forms import CompleteProfileForm, CreateDocumentForm, EditProfilePictureForm, LoginForm, RegisterForm, CreateSchemeForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
@@ -16,27 +15,33 @@ class HomePage(TemplateView):
 
 
 # Document related views
-class viewDocument(ListView):
+class viewDocument(LoginRequiredMixin,ListView):
     model = Document
     template_name = "document/viewDocuments.html"
     queryset = Document.objects.all()
 
 
-class addDocument(CreateView):
+class addDocument(LoginRequiredMixin,CreateView):
     model = Document
-    form_class = PostForm
+    form_class = CreateDocumentForm
     template_name = "document/addDocument.html"
-    success_url = '/'
+    success_url = reverse_lazy("viewDocuments")
+
+    def form_valid(self, form):
+        app_model = form.save(commit=False)
+        app_model.user = self.request.user
+        app_model.save()
+        return super().form_valid(form)
 
 
-class verifyDocument(UpdateView):
+class verifyDocument(LoginRequiredMixin,UpdateView):
     model = Document
     template_name = "document/verifyDocument.html"
     fields = ['verified']
     success_url = '/'
 
 
-class deleteDocument(DeleteView):
+class deleteDocument(LoginRequiredMixin,DeleteView):
     model = Document
     template_name = "document/deleteDocument.html"
     success_url = '/'
@@ -134,7 +139,7 @@ def EditProfileImage(request, pk):
         print(profile.state)
         profile.img = request.FILES['img']
         profile.save()
-        return redirect("homepage")
+        return redirect("profile")
     else:
         form = EditProfilePictureForm()
         return render(request, "users/editPic.html", {"form": form})

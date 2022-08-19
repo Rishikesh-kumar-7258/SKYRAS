@@ -89,18 +89,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# AUTHENTICATION_BACKENDS = (
-#     "django.contrib.auth.backends.ModelBackend",
-#     "allauth.account.auth_backends.AuthenticationBackend",
-# )
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'skyras.sih@gmail.com'
 EMAIL_HOST_PASSWORD = 'qilrwoxeccqfkdjn'
 EMAIL_USE_SSL = True
 
+LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "homepage"
 

@@ -5,20 +5,17 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from captcha.fields import CaptchaField
 
 
-class PostForm(forms.ModelForm):
+class CreateDocumentForm(forms.ModelForm):
+
+    captcha = CaptchaField()
+
     class Meta:
         model = Document
         fields = (
             "name",
-            "description",
             "file",
+            "captcha"
         )
-
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'file': forms.FileInput(attrs={'class': 'form-control'}),
-        }
 
 
 class RegisterForm(UserCreationForm):
@@ -61,6 +58,7 @@ class EditProfilePictureForm(forms.ModelForm):
 class LoginForm(forms.ModelForm):
 
     captcha = CaptchaField()
+
     class Meta:
         model = User
         fields = ["username", "password", "captcha"]
