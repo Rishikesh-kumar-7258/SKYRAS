@@ -73,7 +73,7 @@ class Scheme(models.Model):
     startDate = models.DateField()
     endDate = models.DateField()
     img = models.ImageField(upload_to="scheme/")
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    department = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     #eligibility
     state = models.CharField(max_length=50)
@@ -86,7 +86,6 @@ class Scheme(models.Model):
     gender = models.CharField(max_length=50)
     occupation = models.CharField(max_length=50)
     qualification = models.CharField(max_length=50)
-    created_date = models.DateField(auto_now=True)
-
+    
     def __str__(self) -> str:
         return str(self.name)

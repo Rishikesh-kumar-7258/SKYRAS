@@ -53,8 +53,8 @@
           {% render_field form.img type="file" id="img" class="form-control"%}
         </div>
         <div class="form-group mb-3 col-12">
-          <label for="category">Category</label>
-          {% render_field form.category id="category" class="form-control" placeholder="Select category for scheme"%}
+          <label for="category">Department</label>
+          {% render_field form.department id="category" class="form-control" placeholder="Select category for scheme"%}
         </div>
       </div>
       <div class="col-12 col-md-6 row">
@@ -62,6 +62,34 @@
         <div class="form-group mb-3 col-12">
           <label for="age_min">Min age</label>
           {%render_field form.age_min type="number" id="age_min" class="form-control" placeholder="Enter minimum age"%}
+        </div>
+        <div class="form-group mb-3 col-12">
+          <label for="name">Max age</label>
+          {% render_field form.name type="number" id="name" class="form-control" placeholder="Enter maximum age"%}
+        </div>
+        <div class="form-group mb-3 col-12">
+          <label for="name">Category</label>
+          {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter name of Category"%}
+        </div>
+        <div class="form-group mb-3 col-12">
+          <label for="name">Min Income</label>
+          {% render_field form.name type="number" id="name" class="form-control" placeholder="Enter minimum income"%}
+        </div>
+        <div class="form-group mb-3 col-12">
+          <label for="name">Max Income</label>
+          {% render_field form.name type="number" id="name" class="form-control" placeholder="Enter maximum income"%}
+        </div>
+        <div class="form-group mb-3 col-12">
+          <label for="name">Gender</label>
+          {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter gender"%}
+        </div>
+        <div class="form-group mb-3 col-12">
+          <label for="name">Occupation</label>
+          {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter occupation"%}
+        </div>
+        <div class="form-group mb-3 col-12">
+          <label for="name">Qualification</label>
+          {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter qualification"%}
         </div>
       </div>
       {% comment %} {{form.as_p}} {% endcomment %}
