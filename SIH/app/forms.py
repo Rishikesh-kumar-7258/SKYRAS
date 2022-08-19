@@ -1,7 +1,7 @@
 from django import forms
 from .models import Document, Profile, Scheme
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from captcha.fields import CaptchaField
 
 
@@ -24,6 +24,7 @@ class PostForm(forms.ModelForm):
 class RegisterForm(UserCreationForm):
 
     captcha = CaptchaField()
+
     class Meta:
         model = User
         fields = [
@@ -39,6 +40,7 @@ class RegisterForm(UserCreationForm):
 
 class CreateSchemeForm(forms.ModelForm):
     captcha = CaptchaField()
+
     class Meta:
         model = Scheme
         fields = "__all__"
@@ -49,7 +51,16 @@ class CompleteProfileForm(forms.ModelForm):
         model = Profile
         fields = "__all__"
 
+
 class EditProfilePictureForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ["img"]
+
+
+class LoginForm(forms.ModelForm):
+
+    captcha = CaptchaField()
+    class Meta:
+        model = User
+        fields = ["username", "password", "captcha"]

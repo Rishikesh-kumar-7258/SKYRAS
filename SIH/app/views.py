@@ -1,7 +1,7 @@
 from cmath import log
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Document, Scheme, Profile
-from .forms import CompleteProfileForm, EditProfilePictureForm, PostForm, RegisterForm, CreateSchemeForm
+from .forms import CompleteProfileForm, EditProfilePictureForm, LoginForm, PostForm, RegisterForm, CreateSchemeForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-
+from django.contrib.auth import authenticate, login
 
 class HomePage(TemplateView):
     template_name = "home.html"
@@ -138,3 +138,19 @@ def EditProfileImage(request, pk):
     else:
         form = EditProfilePictureForm()
         return render(request, "users/editPic.html", {"form": form})
+
+
+def Login(request):
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("homepage")
+        else:
+            return HttpResponse("Invalid credentials")  
+
+    form = LoginForm()
+    return render(request, "users/login.html", {"form": form})
