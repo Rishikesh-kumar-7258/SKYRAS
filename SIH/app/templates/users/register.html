@@ -41,26 +41,41 @@
         <div class="col-6 form-group mb-3">
           <label for="fname">First Name</label>
           {%render_field form.first_name class="form-control" id="fname" placeholder="Enter first name" type="text"%}
+          {{form.first_name.errors}}
         </div>
         <div class="col-6 form-group mb-3">
           <label for="lname">Last Name</label>
           {%render_field form.last_name class="form-control" id="lname" placeholder="Enter last name" type="text"%}
+          {{form.last_name.errors}}
         </div>
         <div class="col-12 form-group mb-3">
           <label for="email">Email</label>
           {%render_field form.email class="form-control" id="email" placeholder="Enter email" type="email"%}
+          {{form.email.errors}}
         </div>
         <div class="col-12 form-group mb-3">
           <label for="username">Username</label>
           {%render_field form.username class="form-control" id="username" placeholder="Enter username" type="username"%}
+          {{form.username.errors}}
         </div>
         <div class="col-12 form-group mb-3">
           <label for="password1">Password</label>
           {%render_field form.password1 class="form-control" id="password1" placeholder="Enter passwrd" type="password"%}
+          {{form.password1.errors}}
         </div>
         <div class="col-12 form-group mb-3">
           <label for="password2">Confirm Password</label>
           {%render_field form.password2 class="form-control" id="password2" placeholder="Confirm passwrd" type="password"%}
+          {{form.password2.errors}}
+        </div>
+        <div class="col-8 form-group mb-3">
+          <label for="captcha">Captcha</label>
+          {%render_field form.captcha class="form-control" id="captcha" placeholder="Enter captcha"%}
+          {{form.captcha.errors}}
+        </div>
+
+        <div class="col-4 mb-3 d-flex align-items-end">
+          <button type="button" class='captcha btn btn-primary'>Refresh Captcha</button>
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-success w-100">Register</button>
@@ -80,3 +95,14 @@
   </Footer>
   <!-- End Footer  -->
 {% endblock body %}
+
+{% block js %}
+<script>
+$('.captcha').click(function () {
+    $.getJSON("/captcha/refresh/", function (result) {
+        $('.captcha').attr('src', result['image_url']);
+        $('#id_captcha_0').val(result['key'])
+    });
+});
+</script>
+{% endblock js %}

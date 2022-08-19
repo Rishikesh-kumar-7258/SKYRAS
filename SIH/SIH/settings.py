@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'widget_tweaks',
-    "app"
+    "app",
+    "captcha"
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,18 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# AUTHENTICATION_BACKENDS = (
+#     "django.contrib.auth.backends.ModelBackend",
+#     "allauth.account.auth_backends.AuthenticationBackend",
+# )
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'skyras.sih@gmail.com'
+EMAIL_HOST_PASSWORD = 'qilrwoxeccqfkdjn'
+EMAIL_USE_SSL = True
+
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "homepage"
 
@@ -112,7 +125,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static/"),
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

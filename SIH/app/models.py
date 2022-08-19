@@ -46,8 +46,10 @@ class Profile(models.Model):
     adhaar_number = models.BigIntegerField()
     phone_number = models.CharField(max_length=12)
 
+    objects = models.Manager()
+
     def __str__(self) -> str:
-        return self.user
+        return str(self.user)
 
 
 class Category(models.Model):
@@ -56,7 +58,7 @@ class Category(models.Model):
     created_date = models.DateField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.name)
 
 
 class Scheme(models.Model):
@@ -68,4 +70,4 @@ class Scheme(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.name)

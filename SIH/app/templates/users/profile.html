@@ -29,17 +29,17 @@
 ;">
       <div class="col-md-6 d-flex align-items-center">
         <div class="d-flex flex-column align-items-center mx-3">
-          <img src="https://source.unsplash.com/random/100x100?superhero" alt="Name" width="100px" height="100px"
+          <img src="{{user.profile.img.url}}" alt="{{user.first_name}}" width="100px" height="100px"
             class="rounded-pill">
-          <a href="#">Edit photo</a>
+          <a href="{% url 'editProfilePic' user.profile.id %}">Edit photo</a>
         </div>
         <div>
-          <p>Name</p>
+          <p>{{user.first_name}} {{user.last_name}}</p>
         </div>
       </div>
       <div class="col-md-6 d-flex flex-column justify-content-center align-items-end">
-        <a href="tel:+910123456789">0123456789</a>
-        <a href="mailto:xyz@abc.com">xyz@abc.com</a>
+        <a href="tel:+910123456789">{{user.profile.phone_number}}</a>
+        <a href="mailto:xyz@abc.com">{{user.email}}</a>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
       </div>
       <div class="col-12 d-flex p-3">
         <div class="me-5">
-          <p>Name</p>
+          {% comment %} <p>Name</p> {% endcomment %}
           <p>Date of Birth</p>
           <p>Age</p>
           <p>Gender</p>
@@ -58,12 +58,12 @@
           <p>Adhaar Card</p>
         </div>
         <div class="ms-5">
-          <p>Name</p>
-          <p>dd-mm-yyyy</p>
+          {% comment %} <p>{{user.first_name}} {{user.last_name}}</p> {% endcomment %}
+          <p>{{user.profile.dob}}</p>
           <p>20</p>
-          <p>Gay</p>
-          <p>ST</p>
-          <p>1234566709070</p>
+          <p>{{user.profile.gender}}</p>
+          <p>{{user.profile.category}}</p>
+          <p>{{user.profile.adhaar_number}}</p>
         </div>
       </div>
     </div>
@@ -82,11 +82,11 @@
           <p>Pincode</p>
         </div>
         <div class="ms-5">
-          <p>Address</p>
-          <p>City</p>
-          <p>District</p>
-          <p>State</p>
-          <p>Pincode</p>
+          <p>{{user.profile.state}} , {{user.profile.city}}</p>
+          <p>{{user.profile.city}}</p>
+          <p>{{user.profile.district}}</p>
+          <p>{{user.profile.state}}</p>
+          <p>{{user.profile.pin}}</p>
         </div>
       </div>
     </div>
