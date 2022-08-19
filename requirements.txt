@@ -1,14 +1,14 @@
 asgiref==3.5.2
-autopep8 @ file:///opt/conda/conda-bld/autopep8_1650463822033/work
+autopep8
 backports.zoneinfo==0.2.1
-certifi @ file:///C:/Windows/TEMP/abs_e9b7158a-aa56-4a5b-87b6-c00d295b01fanefpc8_o/croots/recipe/certifi_1655968940823/work/certifi
+certifi 
 Django==4.1
 django-widget-tweaks==1.4.12
 Pillow==9.2.0
 psycopg==3.0.16
 psycopg2-binary==2.9.3
-pycodestyle @ file:///tmp/build/80754af9/pycodestyle_1636635402688/work
+pycodestyle 
 sqlparse==0.4.2
-toml @ file:///tmp/build/80754af9/toml_1616166611790/work
+toml
 tzdata==2022.1
 wincertstore==0.2

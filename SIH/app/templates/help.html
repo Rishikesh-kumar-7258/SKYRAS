@@ -1,117 +1,21 @@
+{% include 'base.html' %}
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home | SIH</title>
+   {%% block tittle %%} <title>Home | SIH</title> {% endblock title %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    {% block css%}
+    {% endblock css%}
 </head>
-
+{% block body%}
 <body class="container-fluid">
-
-    <!-- Header  -->
-    <header>
-        <!-- line for alphabet and language -->
-
-        <div class=" bg-warning row border py-2">
-            <div class="col-12 d-flex justify-content-end align-items-center">
-                <div>
-                    <button class="btn">A-</button>
-                    <button class="btn">A</button>
-                    <button class="btn">A+</button>
-                    <button class="btn">A</button>
-                    <button class="btn">A</button>
-                    <button class="btn">A</button>
-                </div>
-                <div class="mx-3">
-                    <label for="page_language">Language:</label>
-                    <select id="page_language">
-                        <option value="en">English</option>
-                        <option value="hin">Hindi</option>
-                        <option value="tel">Telugu</option>
-                        <option value="tam">Tamil</option>
-                        <option value="kan">Kannada</option>
-                        <option value="mal">Malayalam</option>
-                        <option value="mar">Marathi</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- End line for alphabet and language -->
-
-        <!--container for logo and heading-->
-        <div style="background-color: #FAE5D3;" class="container-fluid middlehead mt-0">
-            <div class="row justify-content-evenly">
-                <div class="col-sm-2 col-s-12 d-flex align-items-center justify-content-center">
-                    <div class="logo mt-3">
-                        <img src="./img/logo_1.jpeg" style="width:150px;height:150px;margin-bottom:10px;" alt="">
-                    </div>
-                </div>
-                <div class="col-sm-8 col-xs-12 text-center">
-                    <div class="mid_header mt-3">
-                        <h2>JAN SWAYAM KALYAN PORTAL</h2>
-                        <h3>Central Government Of India</h3>
-                        <h5>Azadi ka Amrat Mohatsav</h5>
-                    </div>
-                </div>
-                <div class="col-sm-2 col-s-12 d-flex align-items-center justify-content-center">
-                    <div class="ghasidas_image mt-3">
-                        <img src="./img/logo_2.jpeg" style="height:150px; width:150px; margin-bottom:10px;" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End container for logo and heading-->
-
-
-        <!--navbar-->
-        <nav class="navbar navbar-expand-lg bg-light">
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Schemes</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="4syllabus.html">Help</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">About Us</a>
-                    </li>
-                    <!-- Contact -->
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
-                    </li>
-                    <!-- contact close -->
-
-
-                    <!-- About Us Closed -->
-                    <!-- Sign In Tab -->
-                    <li class="nav-item2  d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class="nav-link active" aria-current="page" href="./pages/signIn.html">Sign In</a>
-                    </li>
-                    <!-- Sign In Tab Closed -->
-                </ul>
-            </div>
-            </div>
-        </nav>
-    </header>
-    <!-- End Header  -->
     <!--Help-->
     <div class="container-fluid">
         <div class="p-3 container-fluid stats">
@@ -459,6 +363,8 @@
         </div>
     </div>
     </footer>
+    {% endblock body%}
+    {%block js%}{% endblock js%}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
