@@ -4,6 +4,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from captcha.fields import CaptchaField
 
+SCHEME_CATEGORY = (
+    ('GEN', "General"),
+    ('OBC', "Other Backward Caste"),
+    ('SC', "Scheduled Caste"),
+    ('ST', "Scheduled Tribe"),
+)
+
+SCHEME_GENDER = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+    ('O', 'Other'),
+)
+
 
 class CreateDocumentForm(forms.ModelForm):
 
@@ -37,6 +50,10 @@ class RegisterForm(UserCreationForm):
 
 class CreateSchemeForm(forms.ModelForm):
     captcha = CaptchaField()
+    # category = forms.MultipleChoiceField(
+    #     choices=SCHEME_CATEGORY, widget=forms.CheckboxSelectMultiple())
+    # gender = forms.MultipleChoiceField(
+    #     choices=SCHEME_GENDER, widget=forms.CheckboxSelectMultiple())
 
     class Meta:
         model = Scheme

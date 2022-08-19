@@ -53,46 +53,61 @@
           {% render_field form.img type="file" id="img" class="form-control"%}
         </div>
         <div class="form-group mb-3 col-12">
-          <label for="category">Department</label>
-          {% render_field form.department id="category" class="form-control" placeholder="Select category for scheme"%}
+          <label for="department">Department</label>
+          {% render_field form.department type="text" id="department" class="form-control" placeholder="Select department for scheme"%}
         </div>
       </div>
       <div class="col-12 col-md-6 row">
         <h1>Eligibility</h1>
+        <div class="form-group mb-3 col-12">
+          <label for="state">State</label>
+          {%render_field form.state type="text" id="state" class="form-control" placeholder="Enter state"%}
+        </div>
+        <div class="form-group mb-3 col-12">
+          <label for="district">District</label>
+          {%render_field form.district type="text" id="district" class="form-control" placeholder="Enter district"%}
+        </div>
         <div class="form-group mb-3 col-12">
           <label for="age_min">Min age</label>
           {%render_field form.age_min type="number" id="age_min" class="form-control" placeholder="Enter minimum age"%}
         </div>
         <div class="form-group mb-3 col-12">
           <label for="name">Max age</label>
-          {% render_field form.name type="number" id="name" class="form-control" placeholder="Enter maximum age"%}
+          {% render_field form.age_max type="number" id="name" class="form-control" placeholder="Enter maximum age"%}
         </div>
         <div class="form-group mb-3 col-12">
-          <label for="name">Category</label>
-          {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter name of Category"%}
+          <label for="category">Category</label>
+          {% render_field form.category type="text" id="category" class="form-control" placeholder="Enter category"%}
         </div>
         <div class="form-group mb-3 col-12">
-          <label for="name">Min Income</label>
-          {% render_field form.name type="number" id="name" class="form-control" placeholder="Enter minimum income"%}
+          <label for="income_min">Min Income</label>
+          {% render_field form.income_min type="number" id="income_min" class="form-control" placeholder="Enter minimum income"%}
         </div>
         <div class="form-group mb-3 col-12">
-          <label for="name">Max Income</label>
-          {% render_field form.name type="number" id="name" class="form-control" placeholder="Enter maximum income"%}
+          <label for="income_max">Max Income</label>
+          {% render_field form.income_max type="number" id="income_max" class="form-control" placeholder="Enter maximum income"%}
         </div>
         <div class="form-group mb-3 col-12">
-          <label for="name">Gender</label>
-          {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter gender"%}
+          <label for="gender">Gender</label>
+          {% render_field form.gender type="text" id="gender" class="form-control" placeholder="Enter Gemder"%}
         </div>
         <div class="form-group mb-3 col-12">
-          <label for="name">Occupation</label>
-          {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter occupation"%}
+          <label for="occupation">Occupation</label>
+          {% render_field form.occupation type="text" id="occupation" class="form-control" placeholder="Enter occupation"%}
         </div>
         <div class="form-group mb-3 col-12">
-          <label for="name">Qualification</label>
-          {% render_field form.name type="text" id="name" class="form-control" placeholder="Enter qualification"%}
+          <label for="qualification">Qualification</label>
+          {% render_field form.qualification type="text" id="qualification" class="form-control" placeholder="Enter qualification"%}
         </div>
       </div>
+      <div class="form-group mb-3 col-8">
+        <label for="captcha">Captcha</label>
+        {% render_field form.captcha type="text" id="captcha" class="form-control" placeholder="Enter Captcha"%}
+      </div>
       {% comment %} {{form.as_p}} {% endcomment %}
+      <div class="form-group mb-3 col-4 d-flex align-items-end">
+        <button type="button" class="btn btn-primary w-100">Refresh</button>
+      </div>
       <div class="form-group mb-3 col-12">
         <button type="submit" class="btn btn-success w-100">Create</button>
       </div>

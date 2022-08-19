@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'widget_tweaks',
     "app",
-    "captcha"
+    "captcha",
+    "sms"
 ]
 
 MIDDLEWARE = [
@@ -70,7 +71,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'skyras',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': 'Tulsi@131',
         'HOST': 'localhost',
         'PORT': '5432',
     }

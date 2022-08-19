@@ -9,19 +9,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
+# from sms import send_sms
+
 
 class HomePage(TemplateView):
     template_name = "home.html"
 
 
 # Document related views
-class viewDocument(LoginRequiredMixin,ListView):
+class viewDocument(LoginRequiredMixin, ListView):
     model = Document
     template_name = "document/viewDocuments.html"
     queryset = Document.objects.all()
 
 
-class addDocument(LoginRequiredMixin,CreateView):
+class addDocument(LoginRequiredMixin, CreateView):
     model = Document
     form_class = CreateDocumentForm
     template_name = "document/addDocument.html"
@@ -34,14 +36,14 @@ class addDocument(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
 
 
-class verifyDocument(LoginRequiredMixin,UpdateView):
+class verifyDocument(LoginRequiredMixin, UpdateView):
     model = Document
     template_name = "document/verifyDocument.html"
     fields = ['verified']
     success_url = '/'
 
 
-class deleteDocument(LoginRequiredMixin,DeleteView):
+class deleteDocument(LoginRequiredMixin, DeleteView):
     model = Document
     template_name = "document/deleteDocument.html"
     success_url = '/'
@@ -60,12 +62,6 @@ class FogotPassword(TemplateView):
     template_name: str = "users/forgotPassword.html"
 
 # url for completing the profile page
-
-
-# class CompleteProfile(TemplateView):
-#     template_name: str = "users/completeProfile.html"
-
-# url to go to profile page
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -102,13 +98,16 @@ def CreateScheme(request):
             # sending mails whenever a scheme is created
             superusers_emails = User.objects.filter(
                 is_superuser=True).values_list('email')
+            # user_number = Profile.objects.all().values_list('phone_number')
             receivers = [email[0] for email in list(superusers_emails)]
+            # phone_reciever = [phone[0] for phone in list(user_number)]
             subject = "New scheme created"
             body = "A new scheme is created please visit the website to know more"
             send_mail(subject, body, 'SKYRAS', receivers, fail_silently=False)
+            # send_sms(body, "SKYRAS", phone_reciever, fail_silently=False)
             return redirect('homepage')
         else:
-            return HttpResponse("Invalid form")
+            return HttpResponse(form.errors)
     else:
         form = CreateSchemeForm()
     return render(request, "schemes/create.html", {"form": form})
@@ -155,7 +154,7 @@ def Login(request):
             login(request, user)
             return redirect("homepage")
         else:
-            return HttpResponse("Invalid credentials")  
+            return HttpResponse("Invalid credentials")
 
     form = LoginForm()
     return render(request, "users/login.html", {"form": form})

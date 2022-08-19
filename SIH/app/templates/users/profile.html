@@ -56,13 +56,15 @@
         <img src="{{user.profile.img.url}}" alt="{{user.first_name}}" class="rounded-pill img-fluid">
         <a href="{% url 'editProfilePic' user.profile.id %}" class="p-3">Edit photo</a>
       </div>
-      <div>
+      <div class="d-flex flex-column border">
         <p class="fs-4 fw-bolder">{{user.first_name}} {{user.last_name}}</p>
+        <div class="d-flex align-items-center justify-content-around">
+          <a href="tel:{{user.profile.phone_number}}" class="d-flex flex-column text-decoration-none"><i
+              class="fa-solid fa-mobile"></i>Phone</a>
+          <a href="mailto:{{user.email}}" class="d-flex flex-column text-decoration-none"><i
+              class="fa-solid fa-envelope"></i>Email</a>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6 d-flex flex-column justify-content-center align-items-end">
-      <a href="tel:+910123456789">{{user.profile.phone_number}}</a>
-      <a href="mailto:xyz@abc.com">{{user.email}}</a>
     </div>
   </div>
 

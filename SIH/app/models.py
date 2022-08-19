@@ -96,6 +96,6 @@ class Scheme(models.Model):
     gender = models.CharField(max_length=50)
     occupation = models.CharField(max_length=50)
     qualification = models.CharField(max_length=50)
-    
+
     def __str__(self) -> str:
         return str(self.name)
