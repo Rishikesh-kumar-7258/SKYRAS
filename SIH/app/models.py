@@ -16,10 +16,20 @@ CATEGORY_CHOICES = (
     ("ST", "Scheduled Tribe")
 )
 
+DOCUMENT_NAMES = (
+    ('Aadhar', 'Aadhar'),
+    ("Passport", "Passport"),
+    ("Voter ID", "Voter ID"),
+    ("Driving License", "Driving License"),
+    ("Pan Card", "Pan Card"),
+    ("Ration Card", "Ration Card"),
+    ("Passport", "Passport"),
+    ("Other", "Other")
+)
+
 
 class Document(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
+    name = models.CharField(choices=DOCUMENT_NAMES, max_length=100)
     file = models.FileField(upload_to='documents/')
     verified = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
@@ -75,7 +85,7 @@ class Scheme(models.Model):
     img = models.ImageField(upload_to="scheme/")
     department = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-    #eligibility
+    # eligibility
     state = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
     age_min = models.IntegerField()
@@ -86,6 +96,6 @@ class Scheme(models.Model):
     gender = models.CharField(max_length=50)
     occupation = models.CharField(max_length=50)
     qualification = models.CharField(max_length=50)
-    
+
     def __str__(self) -> str:
         return str(self.name)

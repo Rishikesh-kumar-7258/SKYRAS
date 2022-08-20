@@ -1,10 +1,14 @@
 {% include 'base.html' %}
 
 {% block body %}
-<h1>Add Document </h1>
-<form method="POST" action="{% url 'addDocument' %}" enctype="multipart/form-data" class="container">
+<div class="col-12 text-center">
+<p class="display-4 fw-bolder">Add Document </p>
+</div>
+<form method="POST" action="{% url 'addDocument' %}" enctype="multipart/form-data" class="col-12 col-md-8 offset-md-2">
   {% csrf_token %}
   {{form.as_p}}
-  <button type="submit" class="btn btn-primary">Add Document</button>
+  <div class="mb-3">
+  <button type="submit" class="btn btn-primary w-100">Add Document</button>
+  </div>
 </form>
 {% endblock body %}

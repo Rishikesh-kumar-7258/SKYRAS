@@ -1,7 +1,6 @@
-from cmath import log
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Document, Scheme, Profile
-from .forms import CompleteProfileForm, EditProfilePictureForm, LoginForm, PostForm, RegisterForm, CreateSchemeForm
+from .forms import CompleteProfileForm, CreateDocumentForm, EditProfilePictureForm, LoginForm, RegisterForm, CreateSchemeForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
@@ -10,33 +9,41 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
+# from sms import send_sms
+
 
 class HomePage(TemplateView):
     template_name = "home.html"
 
 
 # Document related views
-class viewDocument(ListView):
+class viewDocument(LoginRequiredMixin, ListView):
     model = Document
     template_name = "document/viewDocuments.html"
     queryset = Document.objects.all()
 
 
-class addDocument(CreateView):
+class addDocument(LoginRequiredMixin, CreateView):
     model = Document
-    form_class = PostForm
+    form_class = CreateDocumentForm
     template_name = "document/addDocument.html"
-    success_url = '/'
+    success_url = reverse_lazy("viewDocuments")
+
+    def form_valid(self, form):
+        app_model = form.save(commit=False)
+        app_model.user = self.request.user
+        app_model.save()
+        return super().form_valid(form)
 
 
-class verifyDocument(UpdateView):
+class verifyDocument(LoginRequiredMixin, UpdateView):
     model = Document
     template_name = "document/verifyDocument.html"
     fields = ['verified']
     success_url = '/'
 
 
-class deleteDocument(DeleteView):
+class deleteDocument(LoginRequiredMixin, DeleteView):
     model = Document
     template_name = "document/deleteDocument.html"
     success_url = '/'
@@ -55,12 +62,6 @@ class FogotPassword(TemplateView):
     template_name: str = "users/forgotPassword.html"
 
 # url for completing the profile page
-
-
-# class CompleteProfile(TemplateView):
-#     template_name: str = "users/completeProfile.html"
-
-# url to go to profile page
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -97,13 +98,16 @@ def CreateScheme(request):
             # sending mails whenever a scheme is created
             superusers_emails = User.objects.filter(
                 is_superuser=True).values_list('email')
+            # user_number = Profile.objects.all().values_list('phone_number')
             receivers = [email[0] for email in list(superusers_emails)]
+            # phone_reciever = [phone[0] for phone in list(user_number)]
             subject = "New scheme created"
             body = "A new scheme is created please visit the website to know more"
             send_mail(subject, body, 'SKYRAS', receivers, fail_silently=False)
+            # send_sms(body, "SKYRAS", phone_reciever, fail_silently=False)
             return redirect('homepage')
         else:
-            return HttpResponse("Invalid form")
+            return HttpResponse(form.errors)
     else:
         form = CreateSchemeForm()
     return render(request, "schemes/create.html", {"form": form})
@@ -134,7 +138,7 @@ def EditProfileImage(request, pk):
         print(profile.state)
         profile.img = request.FILES['img']
         profile.save()
-        return redirect("homepage")
+        return redirect("profile")
     else:
         form = EditProfilePictureForm()
         return render(request, "users/editPic.html", {"form": form})
@@ -150,7 +154,7 @@ def Login(request):
             login(request, user)
             return redirect("homepage")
         else:
-            return HttpResponse("Invalid credentials")  
+            return HttpResponse("Invalid credentials")
 
     form = LoginForm()
     return render(request, "users/login.html", {"form": form})

@@ -4,21 +4,31 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from captcha.fields import CaptchaField
 
+SCHEME_CATEGORY = (
+    ('GEN', "General"),
+    ('OBC', "Other Backward Caste"),
+    ('SC', "Scheduled Caste"),
+    ('ST', "Scheduled Tribe"),
+)
 
-class PostForm(forms.ModelForm):
+SCHEME_GENDER = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+    ('O', 'Other'),
+)
+
+
+class CreateDocumentForm(forms.ModelForm):
+
+    captcha = CaptchaField()
+
     class Meta:
         model = Document
         fields = (
             "name",
-            "description",
             "file",
+            "captcha"
         )
-
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'file': forms.FileInput(attrs={'class': 'form-control'}),
-        }
 
 
 class RegisterForm(UserCreationForm):
@@ -40,6 +50,10 @@ class RegisterForm(UserCreationForm):
 
 class CreateSchemeForm(forms.ModelForm):
     captcha = CaptchaField()
+    # category = forms.MultipleChoiceField(
+    #     choices=SCHEME_CATEGORY, widget=forms.CheckboxSelectMultiple())
+    # gender = forms.MultipleChoiceField(
+    #     choices=SCHEME_GENDER, widget=forms.CheckboxSelectMultiple())
 
     class Meta:
         model = Scheme
@@ -61,6 +75,7 @@ class EditProfilePictureForm(forms.ModelForm):
 class LoginForm(forms.ModelForm):
 
     captcha = CaptchaField()
+
     class Meta:
         model = User
         fields = ["username", "password", "captcha"]
