@@ -1,5 +1,5 @@
 from django import forms
-from .models import Document, Profile, Scheme
+from .models import Document, Profile, Scheme, SchemeRegistration, SchemeTracking
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from captcha.fields import CaptchaField
@@ -79,3 +79,17 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["username", "password", "captcha"]
+
+
+class SchemeRegistrationForm(forms.ModelForm):
+    captcha = CaptchaField()
+
+    class Meta:
+        model = SchemeRegistration
+        fields = "__all__"
+
+
+class SchemeTrackingCreateForm(forms.ModelForm):
+    class Meta:
+        model = SchemeTracking
+        fields = "__all__"

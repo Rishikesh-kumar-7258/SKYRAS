@@ -53,7 +53,7 @@ class Profile(models.Model):
     dob = models.DateField()
     gender = models.CharField(choices=GENDER_CHOICES, max_length=50)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=50)
-    adhaar_number = models.BigIntegerField()
+    adhaar_number = models.BigIntegerField(unique=True)
     phone_number = models.CharField(max_length=12)
 
     # educational details
@@ -99,3 +99,22 @@ class Scheme(models.Model):
 
     def __str__(self) -> str:
         return str(self.name)
+
+
+class SchemeRegistration(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    scheme = models.ForeignKey(Scheme, on_delete=models.CASCADE)
+    created_date = models.DateField(auto_now=True)
+
+    def __str__(self) -> str:
+        return str(self.user) + " " + str(self.scheme)
+
+class SchemeTracking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    scheme = models.ForeignKey(Scheme, on_delete=models.CASCADE, related_name="scheme")
+    registered = models.BooleanField(default=False)
+    verified = models.BooleanField(default=False)
+    benefitted = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return str(self.user) + " " + str(self.scheme)

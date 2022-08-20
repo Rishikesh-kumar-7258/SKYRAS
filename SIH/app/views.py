@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Document, Scheme, Profile
-from .forms import CompleteProfileForm, CreateDocumentForm, EditProfilePictureForm, LoginForm, RegisterForm, CreateSchemeForm
+from .forms import CompleteProfileForm, CreateDocumentForm, EditProfilePictureForm, LoginForm, RegisterForm, CreateSchemeForm, SchemeRegistrationForm, SchemeTrackingCreateForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
@@ -9,7 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
+from django.utils.timezone import datetime
 # from sms import send_sms
+
+TODAY = datetime.today()
 
 
 class HomePage(TemplateView):
@@ -158,3 +161,42 @@ def Login(request):
 
     form = LoginForm()
     return render(request, "users/login.html", {"form": form})
+
+
+@login_required
+def SchemeRegistration(request, pk):
+    if request.method == "POST":
+        form = SchemeRegistrationForm(request.POST, request.FILES)
+        tracker = SchemeTrackingCreateForm(request.POST, request.FILES)
+        if form.is_valid() and tracker.is_valid():
+            form_obj = form.save(commit=False)
+            tracker_obj = form.save(commit=False)
+            tracker_obj.user = request.user
+            tracker_obj.scheme = Scheme.objects.get(pk=pk)
+            form_obj.user = request.user
+            form_obj.scheme = Scheme.objects.get(pk=pk)
+            form_obj.created_data = TODAY
+            form_obj.save()
+            tracker_obj.save()
+            return redirect("trackScheme")
+        else:
+            return HttpResponse(form.errors)
+
+
+@login_required
+def TrackScheme(request, pk):
+    tracker = Scheme.objects.get(pk=pk).prefetch_related("scheme")
+    return render(request, "schemes/trackScheme.html", {"tracker" : tracker})
+
+
+def getLatestSchemes(count):
+    s = Scheme.objects.all().order_by("startDate").values()[:count]
+
+    return s
+
+
+def aboutToLast(count):
+    s = Scheme.objects.filter(endDate__range=(
+        TODAY, TODAY+TODAY.deltatime(days=10))).order_by("endDate").values()[:count]
+
+    return s
