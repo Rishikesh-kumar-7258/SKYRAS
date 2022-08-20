@@ -188,6 +188,9 @@ def TrackScheme(request, pk):
     tracker = Scheme.objects.get(pk=pk).prefetch_related("scheme")
     return render(request, "schemes/trackScheme.html", {"tracker" : tracker})
 
+class Scheme(TemplateView):
+    template_name = "schemes/single_scheme.html"
+
 
 def getLatestSchemes(count):
     s = Scheme.objects.all().order_by("startDate").values()[:count]

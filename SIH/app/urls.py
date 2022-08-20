@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AboutUs, CompleteProfile, ContactUs, Login, ProfileView, Schemes, SignUp, addDocument, deleteDocument, verifyDocument, viewDocument, HomePage, FogotPassword, Help, CreateScheme, EditProfileImage, SchemeRegistration, TrackScheme
+from .views import AboutUs, CompleteProfile, ContactUs, Login, ProfileView, Schemes, SignUp, addDocument, deleteDocument, verifyDocument, viewDocument, HomePage, FogotPassword, Help, CreateScheme, EditProfileImage, SchemeRegistration, TrackScheme,Scheme
 
 urlpatterns = [
     path('', HomePage.as_view(), name="homepage"),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('schemeRegistration/<int:pk>',
          SchemeRegistration, name="schemeRegistration"),
     path('trackScheme/<int:pk>', TrackScheme, name="trackScheme"),
+    path('scheme/<int:pk>', Scheme.as_view(), name="scheme"),
 
     # help url
     path("help/", Help.as_view(), name="help"),
