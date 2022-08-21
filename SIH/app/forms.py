@@ -86,10 +86,4 @@ class SchemeRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = SchemeRegistration
-        fields = "__all__"
-
-
-class SchemeTrackingCreateForm(forms.ModelForm):
-    class Meta:
-        model = SchemeTracking
-        fields = "__all__"
+        fields = ["captcha"]

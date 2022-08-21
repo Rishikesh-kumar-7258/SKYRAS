@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import AboutUs, CompleteProfile, ContactUs, Login, ProfileView, Schemes, SignUp, addDocument, deleteDocument, verifyDocument, viewDocument, HomePage, FogotPassword, Help, CreateScheme, EditProfileImage, SchemeRegistration, TrackScheme,Scheme
+from .views import AboutUs, ChangePassword, CompleteProfile, ContactUs, Login, ProfileView, SchemeRegistrationView, Schemes, SignUp, addDocument, deleteDocument, verifyDocument, viewDocument, HomePage, Help, CreateScheme, EditProfileImage, TrackScheme, OneScheme
 
 urlpatterns = [
-    path('', HomePage.as_view(), name="homepage"),
+    path('', HomePage, name="homepage"),
 
     # document related urls
-    path('viewDocuments', viewDocument.as_view(), name='viewDocuments'),
+    path('viewDocuments/<int:pk>', viewDocument.as_view(), name='viewDocument'),
     path('addDocument/', addDocument.as_view(), name='addDocument'),
     path('verifyDocument/<int:pk>',
          verifyDocument.as_view(), name='verifyDocument'),
@@ -16,17 +16,18 @@ urlpatterns = [
     path('register', SignUp.as_view(), name="register"),
     path('login/', Login, name="login"),
     path('completeProfile/', CompleteProfile, name="completeProfile"),
-    path('profile/', ProfileView.as_view(), name="profile"),
+    path('profile/', ProfileView, name="profile"),
     path('editProfilePic/<int:pk>',
          EditProfileImage, name="editProfilePic"),
+    path('changePassword/', ChangePassword, name="changePassword"),
 
     # scheme related urls
     path('allSchemes/', Schemes.as_view(), name="schemes"),
     path('addScheme/', CreateScheme, name="addScheme"),
     path('schemeRegistration/<int:pk>',
-         SchemeRegistration, name="schemeRegistration"),
+         SchemeRegistrationView, name="schemeRegistration"),
     path('trackScheme/<int:pk>', TrackScheme, name="trackScheme"),
-    path('scheme/<int:pk>', Scheme.as_view(), name="scheme"),
+    path('scheme/<int:pk>', OneScheme.as_view(), name="scheme"),
 
     # help url
     path("help/", Help.as_view(), name="help"),
