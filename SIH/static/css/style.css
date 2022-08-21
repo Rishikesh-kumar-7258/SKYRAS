@@ -6,4 +6,58 @@ body {
   margin: 0;
   padding: 0;
   width: 100vw;
+  background-color: #F5F5F5;
+}
+
+/*######################## Background color classes #######################*/
+.bg-red{
+  background-color: #e20a4a;
+}
+
+.bg-lightBlue{
+  background-color: #a6aaee;
+}
+
+.bg-blue{
+  background-color: #3b447a;
+}
+
+.bg-darkBlue{
+  background-color: #222b5f;
+}
+
+.bg-lightWhite{
+  background-color: #d9d9d9;
+}
+
+.bg-lightRed{
+  background-color: #DEACD926;
+}
+
+/*######################## Font color classes #######################*/
+.text-darkBlue{
+  color: #222b5f;
+}
+
+.text-red{
+  color: #e20a4a;
+}
+
+/*######################## border classes #######################*/
+.border-bottom-blue{
+  border-bottom: 15px solid #A6AAEECC;
+}
+
+/*######################## Button classes #######################*/
+.btn-red{
+  background-color : #e20a4a;
+}
+.btn-red:hover{
+  background-color: #f03f74;
+}
+
+/*######################## HOMEPAGE #######################*/
+footer a{
+  text-decoration: none;
+  color: white;
 }
