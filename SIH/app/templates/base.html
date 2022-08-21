@@ -146,7 +146,12 @@
                         {{user}}
                     </button>
                     <ul class="dropdown-menu">
+                        {% if user.profile %}
                         <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'completeProfile' %}">Complete Profile</a></li>
+                        {% endif %}
+                        <li><a class="dropdown-item" href="{% url 'changePassword' %}">Change Password</a></li>
                         <hr>
                         <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                     </ul>

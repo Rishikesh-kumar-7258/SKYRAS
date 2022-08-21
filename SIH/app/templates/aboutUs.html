@@ -1,26 +1,15 @@
 {% include 'base.html' %}
 {% load static %}
 
-<!doctype html>
-<html lang="en">
+{% block title %} <title>Home | SIH</title> {% endblock title %}
+{% block css%}
+<style>
+    .lang_pipe {
+        background-color: rgb(6, 83, 87);
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   {% block tittle %} <title>Home | SIH</title> {% endblock title %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    {% block css%}
-    <style>
-        .lang_pipe{
-            background-color:rgb(6, 83, 87);
-
-        }
-       
-    </style>
-    {% endblock css%}
-</head>
+    }
+</style>
+{% endblock css%}
 {% block body%}
 
 
@@ -28,7 +17,7 @@
 
 <div class="container-fluid About_us m-5">
 
-    <h3 >About Us</h3>
+    <h3>About Us</h3>
     <div class=" row p-3 ">
         <div class="col-sm-6 col-sx-12 ">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem accusantium nam aperiam necessitatibus,
@@ -38,7 +27,7 @@
             Praesentium aliquam odit incidunt dolorem voluptas. Maiores unde corrupti, nihil non ipsa optio et est
             enim fugiat dolorem animi magnam illo libero dolor! Laudantium aut enim numquam impedit ullam! Incidunt
             dolorem dolores perferendis dignissimos deserunt perspiciatis labore fuga aperiam, animi quos aliquam
-            ex? Voluptatum explicabo consequatur, libero eligendi impedit ex soluta quaerat 
+            ex? Voluptatum explicabo consequatur, libero eligendi impedit ex soluta quaerat
 
         </div>
         <div class="col-sm-4 col-sx-12 mb-2">
@@ -48,7 +37,7 @@
             </div>
         </div>
         <hr>
-        <h3 >Our Mission</h3>
+        <h3>Our Mission</h3>
         <div class=" row p-3">
             <div class="col-sm-6 col-sx-12">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem accusantium nam aperiam
@@ -62,7 +51,7 @@
                 est
                 enim fugiat dolorem animi magnam illo libero dolor! Laudantium aut enim numquam impedit ullam!
                 Incidunt
-              
+
                 commodi quibusdam! Cumque libero quibusdam repudiandae eius adipisci tempore cum molestiae porro,
 
             </div>
@@ -83,121 +72,111 @@
 
 
 
-<!--Footer-->
-<footer style="color:white; background-color:rgb(37, 30, 30);" class="footer_area">
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!--Footer-->
+    <footer style="color:white; background-color:rgb(37, 30, 30);" class="footer_area">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
 
-        <div class="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
-        </div>
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
 
-        <div>
-            <a href="https://www.facebook.com/karn.tiwari.503" class="me-4 text-reset">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://twitter.com/karntiwari" class="me-4 text-reset">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="karntiwari5353@gmail.com" class="me-4 text-reset">
-                <i class="fab fa-mail"></i>
-            </a>
-            <a href="https://www.instagram.com/im_kt__/" class="me-4 text-reset">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/karn-tiwari/" class="me-4 text-reset">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/Karn-Tiwari" class="me-4 text-reset">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://goo.gl/maps/rRinpZKaNHND1HfZ7" class="me-4 text-reset">
-                <i class="fab fa-home"></i>
-            </a>
-        </div>
+            <div>
+                <a href="https://www.facebook.com/karn.tiwari.503" class="me-4 text-reset">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com/karntiwari" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="karntiwari5353@gmail.com" class="me-4 text-reset">
+                    <i class="fab fa-mail"></i>
+                </a>
+                <a href="https://www.instagram.com/im_kt__/" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/karn-tiwari/" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Karn-Tiwari" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://goo.gl/maps/rRinpZKaNHND1HfZ7" class="me-4 text-reset">
+                    <i class="fab fa-home"></i>
+                </a>
+            </div>
 
-    </section>
-    <!--Lower footer-->
-    <div class="container-fluid ">
-        <div class="row d-flex p-0 m-0">
-            <div class=" col-sm-4 col-sx-12">
-                <div class="single_ftr">
-                    <h4 class="sf_title" style="color:rgb(176, 149, 13) ;">Jan Swayam Kalyan Portal</h4>
-                    <div class="newsletter_form">
-                        <p>The purpose of the Jan Swayam Kalyan portal is to make the facility available to the
-                            common beneficiary along with social audits. Through Jan Swayam Kalyan portal,
-                            information and facilities should be made available to the common people the one click.
-                            Jan Swayam Kalyan Portal is the first of its kind in which the People get awared and
-                            benefited from upcoming all the schemes of government of India and they also tacked the
-                            schemes in which they should be benifited.
-                        </p>
+        </section>
+        <!--Lower footer-->
+        <div class="container-fluid ">
+            <div class="row d-flex p-0 m-0">
+                <div class=" col-sm-4 col-sx-12">
+                    <div class="single_ftr">
+                        <h4 class="sf_title" style="color:rgb(176, 149, 13) ;">Jan Swayam Kalyan Portal</h4>
+                        <div class="newsletter_form">
+                            <p>The purpose of the Jan Swayam Kalyan portal is to make the facility available to the
+                                common beneficiary along with social audits. Through Jan Swayam Kalyan portal,
+                                information and facilities should be made available to the common people the one click.
+                                Jan Swayam Kalyan Portal is the first of its kind in which the People get awared and
+                                benefited from upcoming all the schemes of government of India and they also tacked the
+                                schemes in which they should be benifited.
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-                    <div class="col-sm-3 col-xs-12 align-items-center justify-content-center">
-                        <div class="single_ftr">
-                            <h4 class="sf_title" style="color:rgb(176, 149, 13) ;">Information Related To</h4>
-                            <!-- <ul> -->
-                            <ul>
-                                <li> <span>Agriculture</span> </li>
-                                <li> <span>Education</span> </li>
-                                <li> <span>Environment &amp; Forest</span> </li>
-                                <li> <span>Health &amp; Family Welfare</span> </li>
-                                <li> <span>Food and &amp; Public Distribution</span> </li>
-                                <li> <span>Health &amp; Family Welfare</span> </li>
-                                <li> <span>Housing</span> </li>
-                                <li> <span>Rural Development</span> </li>
-                                <li> <span>Labour &amp; Employment</span> </li>
-                                <li> <span>Science &amp; Technology</span> </li>
-                            </ul>
-                            <!-- </ul> -->
-                        </div>
+                <div class="col-sm-3 col-xs-12 align-items-center justify-content-center">
+                    <div class="single_ftr">
+                        <h4 class="sf_title" style="color:rgb(176, 149, 13) ;">Information Related To</h4>
+                        <!-- <ul> -->
+                        <ul>
+                            <li> <span>Agriculture</span> </li>
+                            <li> <span>Education</span> </li>
+                            <li> <span>Environment &amp; Forest</span> </li>
+                            <li> <span>Health &amp; Family Welfare</span> </li>
+                            <li> <span>Food and &amp; Public Distribution</span> </li>
+                            <li> <span>Health &amp; Family Welfare</span> </li>
+                            <li> <span>Housing</span> </li>
+                            <li> <span>Rural Development</span> </li>
+                            <li> <span>Labour &amp; Employment</span> </li>
+                            <li> <span>Science &amp; Technology</span> </li>
+                        </ul>
+                        <!-- </ul> -->
                     </div>
-                    <div class=" col-sm-2 col-sx-12 align-items-center justify-content-center">
-                        <div class="single_ftr">
-                            <h4 class="sf_title" style="color:rgb(176, 149, 13) ;">Contact us</h4>
-
-                            <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-                            <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-                            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
-                        </div>
-                    </div>
-                    <div class=" col-sm-3 col-sx-12 align-items-center justify-content-center">
-                        <div class="single_ftr">
-                            <h4 class="sf_title" style="color:rgb(176, 149, 13) ;">Map</h4>
-                          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14798.159357363334!2d82.25754092906357!3d21.990617167763297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a27df43d039f359%3A0xee136f247dbaee86!2sKoni%2C%20Chhattisgarh%20495551!5e0!3m2!1sen!2sin!4v1650448027870!5m2!1sen!2sin"
-                         style="width:100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                          referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-            
-            </div>
-        </div>
-    </div>
-    </section>
-    </div>
-    <div style="background-color:rgb(0, 0, 0); color:white" class="copy_area ">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <p class="copyright_text text-center">Copyright @ 2021 Guru Ghasidas Vishwavidyalaya,
-                        Bilaspur (C.G.)
-                    </p>
                 </div>
+                <div class=" col-sm-2 col-sx-12 align-items-center justify-content-center">
+                    <div class="single_ftr">
+                        <h4 class="sf_title" style="color:rgb(176, 149, 13) ;">Contact us</h4>
+
+                        <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                        <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                    </div>
+                </div>
+                <div class=" col-sm-3 col-sx-12 align-items-center justify-content-center">
+                    <div class="single_ftr">
+                        <h4 class="sf_title" style="color:rgb(176, 149, 13) ;">Map</h4>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14798.159357363334!2d82.25754092906357!3d21.990617167763297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a27df43d039f359%3A0xee136f247dbaee86!2sKoni%2C%20Chhattisgarh%20495551!5e0!3m2!1sen!2sin!4v1650448027870!5m2!1sen!2sin"
+                            style="width:100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+</section>
+</div>
+<div style="background-color:rgb(0, 0, 0); color:white" class="copy_area ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <p class="copyright_text text-center">Copyright @ 2021 Guru Ghasidas Vishwavidyalaya,
+                    Bilaspur (C.G.)
+                </p>
             </div>
         </div>
     </div>
+</div>
 </footer>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>
-{% for scheme in object_list %}
-    {{scheme.name}}
-{% endfor %}
 {% endblock body %}

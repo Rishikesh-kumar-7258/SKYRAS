@@ -1,0 +1,24 @@
+{% include 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}{% endblock title %}
+{% block css %}{% endblock css %}
+{% block body %}
+{% if exists %}
+<p class="display-4 fw-bolder">You have already registered for this scheme</p>
+<a href="{% url 'trackScheme' pk %}">Track your progress</a>
+{% else %}
+<form action="{% url 'schemeRegistration' pk %}" method="post" class="col-12 col-md-8 offset-md-2">
+  {% csrf_token %}
+  <p class="display-4 fw-bolder">Enter Captcha to confirm</p>
+  <div class="form-group mb-3">
+    <label for="captcha">Captcha</label>
+    {%render_field form.captcha class="form-group" placeholder="Enter captcha"%}
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+{% endif %}
+
+{% endblock body %}
+{% block js %}{% endblock js %}

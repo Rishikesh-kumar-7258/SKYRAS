@@ -33,7 +33,7 @@ class Document(models.Model):
     file = models.FileField(upload_to='documents/')
     verified = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -68,14 +68,10 @@ class Profile(models.Model):
         return str(self.user)
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-    desc = models.TextField(blank=True)
-    created_date = models.DateField(auto_now=True)
-
-    def __str__(self) -> str:
-        return str(self.name)
-
+DEPARTMENT_CHOICES = (
+    ("IT", "IT"),
+    ("Ag", "Agriculture"),
+)
 
 class Scheme(models.Model):
     name = models.CharField(max_length=50)
@@ -83,7 +79,7 @@ class Scheme(models.Model):
     startDate = models.DateField()
     endDate = models.DateField()
     img = models.ImageField(upload_to="scheme/")
-    department = models.ForeignKey(Category, on_delete=models.CASCADE)
+    department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES)
 
     # eligibility
     state = models.CharField(max_length=50)
@@ -109,9 +105,10 @@ class SchemeRegistration(models.Model):
     def __str__(self) -> str:
         return str(self.user) + " " + str(self.scheme)
 
+
 class SchemeTracking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    scheme = models.ForeignKey(Scheme, on_delete=models.CASCADE, related_name="scheme")
+    scheme = models.ForeignKey(Scheme, on_delete=models.CASCADE)
     registered = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
     benefitted = models.BooleanField(default=False)

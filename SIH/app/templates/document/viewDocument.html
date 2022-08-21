@@ -1,0 +1,16 @@
+{% include 'base.html' %}
+
+{% block title %}
+<title>
+  {{user}} | Document
+</title>
+{% endblock title %}
+
+{% block body %}
+<div class="col-12 col-md-8 offset-md-2 d-flex align-items-center flex-column">
+  <embed src="{{object.file.url}}" width="500px">
+  <object data="{{object.file.url}}"></object>
+  {{object.file.url}}
+  <p class="display-1 fw-bolder">{{object.name}}</p>
+</div>
+{% endblock body %}

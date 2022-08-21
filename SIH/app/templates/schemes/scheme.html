@@ -1,5 +1,7 @@
 {% include 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
+
 
 {% block title %} <title>Home | SIH</title> {% endblock title %}
 {% block css%}
@@ -36,12 +38,13 @@
                 <p>{{scheme.desc}}</p>
                 <p>{{scheme.department}}</p>
             </div>
-            <div class="col-12 d-flex justify-content-around align-self-end">
+            <div class="col-12 d-flex justify-content-around">
                 <a href="{% url 'scheme' scheme.id %}" class="btn btn-white" style="flex : 1">View</a>
-                <button class="btn btn-white" style="flex : 1">Apply</button>
+                <a href="{% url 'schemeRegistration' scheme.id %}" class="btn btn-white" style="flex:1">Register</a>
             </div>
         </div>
     </div>
+
     {% endfor %}
 </div>
 
@@ -153,8 +156,3 @@
     </div>
 </footer>
 {% endblock body %}
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
-</body>

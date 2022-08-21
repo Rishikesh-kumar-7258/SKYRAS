@@ -121,7 +121,12 @@
       <p class="display-5 fw-bolder">Documents</p>
       <a href="{% url 'addDocument' %}" class="btn btn-success">Upload Documents</a>
     </div>
+    <div class="d-flex flex-column mb-5">
+      {% for document in documents %}
+      <a href="{{document.file.url}}">{{document.name}}</a>
 
+      {% endfor %}
+    </div>
 
   </div>
 </section>
