@@ -23,7 +23,8 @@
                 <div class="carousel-item active">
                     <img src="/media/{{scheme.img}}" class="d-block w-100" alt="{{scheme.name}}" height="500px">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>{{scheme.name}}</h5>
+                        <a href="{% url 'scheme' scheme.id %}"
+                            class="text-white text-decoration-none">{{scheme.name}}</a>
                         <p>{{scheme.desc}}</p>
                     </div>
                 </div>
@@ -31,7 +32,8 @@
                 <div class="carousel-item">
                     <img src="/media/{{scheme.img}}" class="d-block w-100" alt="{{scheme.name}}" height="500px">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>{{scheme.name}}</h5>
+                        <a href="{% url 'scheme' scheme.id %}"
+                            class="text-white text-decoration-none">{{scheme.name}}</a>
                         <p>{{scheme.desc}}</p>
                     </div>
                 </div>

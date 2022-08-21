@@ -23,7 +23,7 @@ body {
 }
 
 .bg-darkBlue{
-  background-color: #222b5f;
+  background-color: #3b447a;
 }
 
 .bg-lightWhite{
@@ -60,4 +60,19 @@ body {
 footer a{
   text-decoration: none;
   color: white;
+}
+
+.backToTop{
+  position : fixed;
+  top : 50%;
+  z-index: 100;
+  right : 10px;
+  top : 85vh;
+  width : 50px;
+  height : 50px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  padding : 0;
 }
