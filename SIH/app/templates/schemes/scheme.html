@@ -6,10 +6,8 @@
 {% block title %} <title>Home | SIH</title> {% endblock title %}
 {% block css %}
 <style>
-    table tbody tr td,
-    table thead tr th {
+    table tbody tr {
         vertical-align: middle;
-        text-align: center;
     }
 </style>
 {% endblock css %}
@@ -24,17 +22,19 @@
 
 <div class="row filterRow p-5">
     <div class="col-12 col-md-8">
-        <form action="{% url 'schemes'%}" method="get" class="position-relative mb-3">
-            <input type="text" name="search" id="search" class="form-control rounded-pill">
+        <form action="{% url 'schemes'%}" method="get" class="position-relative mb-3 shadow rounded-pill">
+            <input type="text" name="search" id="search" class="form-control rounded-pill"
+                placeholder="search scheme names">
             <button type="submit" class="btn-red btn position-absolute top-0 end-0 rounded-pill"><i
                     class="fa-solid fa-search"></i></button>
         </form>
     </div>
 
     <div class="col-12 col-md-4 singleCenter">
-        <button class="customDropdownBtn btn text-red border border-2 fw-bolder px-5">Filter &triangledown;</button>
+        <button class="customDropdownBtn shadow btn text-red border border-2 fw-bolder px-5">Filter
+            &triangledown;</button>
     </div>
-    <div class="customDropdown col-12 mt-3">
+    <div class="customDropdown col-12 mt-3 d-none">
         <form action="{% url 'schemes' %}" method="get" class="row g-4">
             <div class="form-check col-12 col-md-4 mb-3 px-5 ">
                 <div class="d-flex align-items-center justify-content-between border-bottom px-2">
@@ -75,7 +75,7 @@
 
 <div class="row p-5">
     <div class="col-12 border">
-        <table class="table table-striped">
+        <table class="table">
             <thead class="bg-darkBlue py-4">
                 <tr>
                     <th>Scheme ID</th>
@@ -87,8 +87,8 @@
             <tbody class="bg-lightBlue">
                 {% for scheme in object_list %}
                 <tr>
-                    <td>{{scheme.id}}</td>
-                    <td><img src="{{scheme.img.url}}" alt="{{scheme.name}}"></td>
+                    <th>{{scheme.id}}</td>
+                    <td><img src="{{scheme.img.url}}" alt="{{scheme.name}}" width="200px"></td>
                     <td>
                         <div class="d-flex flex-column">
                             <p class="display-6 fw-bolder">{{scheme.name}}</p>
@@ -104,7 +104,7 @@
 </div>
 
 <!--Footer-->
-<footer style="color:white; background-color:rgb(37, 30, 30);" class="footer_area">
+<footer class="footer_area bg-darkBlue">
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
 
         <div class="me-5 d-none d-lg-block">
@@ -195,10 +195,7 @@
 
         </div>
     </div>
-    </div>
-    </section>
-    </div>
-    <div style="background-color:rgb(0, 0, 0); color:white" class="copy_area ">
+    <div class="copy_area ">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
@@ -211,3 +208,11 @@
     </div>
 </footer>
 {% endblock body %}
+
+{% block js %}
+<script>
+    $(".customDropdownBtn").click(function () {
+        $(".customDropdown").toggleClass("d-none");
+    })
+</script>
+{% endblock js %}

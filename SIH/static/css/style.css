@@ -33,7 +33,7 @@ body {
 }
 
 .bg-lightRed{
-  background-color: #DEACD926;
+  background-color: #deacb9;
 }
 
 /*######################## Font color classes #######################*/
@@ -72,8 +72,9 @@ body {
 
 /*######################## Utility classes #######################*/
 .singleCenter{
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /*######################## HOMEPAGE #######################*/
@@ -95,4 +96,8 @@ footer a{
   place-items: center;
   text-decoration: none;
   padding : 0;
+}
+
+.statistics *{
+  height: 100%;
 }

@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     "app",
     "captcha",
-    # "sms"
+    "sms"
 ]
 
 MIDDLEWARE = [
@@ -89,6 +89,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
+
+SMS_BACKEND = 'sms.backends.console.SmsBackend'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
