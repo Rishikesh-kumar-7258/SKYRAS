@@ -170,10 +170,34 @@ def Login(request):
 
 
 ################################# Scheme related views ################################################
-class Schemes(ListView):
-    model = Scheme
-    template_name = "schemes/scheme.html"
-    queryset = Scheme.objects.all()
+# class Schemes(ListView):
+#     model = Scheme
+#     template_name = "schemes/scheme.html"
+#     queryset = Scheme.objects.all()
+
+def Schemes(request):
+
+    if request.method == "GET":
+        data = Scheme.objects.all()
+
+        search = request.GET.get("search")
+        if search:
+            data = data.filter(name__icontains=search)
+
+        recent = request.GET.get("recent")
+        if recent and recent == "on":
+            data = data.filter(endDate__range=(
+                TODAY-timezone.timedelta(days=30), TODAY)).order_by("endDate")
+
+        department = request.GET.get("department")
+        if department and recent == "on":
+            data = data.filter(department=department)
+
+        sorted = request.GET.get("sorted")
+        if sorted and sorted == "on":
+            data = data.order_by("name")
+
+        return render(request, "schemes/scheme.html", {"object_list": data})
 
 
 @user_passes_test(isSuperUser)

@@ -4,48 +4,103 @@
 
 
 {% block title %} <title>Home | SIH</title> {% endblock title %}
-{% block css%}
+{% block css %}
 <style>
-    .lang_pipe {
-        background-color: rgb(6, 83, 87);
+    table tbody tr td,
+    table thead tr th {
+        vertical-align: middle;
+        text-align: center;
     }
 </style>
-{% endblock css%}
+{% endblock css %}
 {% block body%}
 
-
-<div class="container-fluid Schemes_section d-flex justify-content-center">
-    <span class="p-5">
-        <h1 class="display-4 fw-bolder">Schemes Section</h1>
-        <div class="progress mb-3">
-            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                aria-label="Danger striped example" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-                aria-valuemax="100"></div>
-        </div>
-
-    </span>
+<div class="row p-5">
+    <div class="col-12">
+        <p class="display-6 fw-bolder text-darkBlue">Schemes</p>
+        <p class="fw-bolder">We provide you number of schemes to benefit you as per your requirment.</p>
+    </div>
 </div>
 
-<div class="row g-2 mb-5">
-    {% for scheme in object_list %}
-    <div class="col-12 col-md-4 border text-decoration-none text-black">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <img src="{{scheme.img.url}}" alt="{{scheme.name}}" class="img-fluid">
-            </div>
-            <div class="col-12 col-md-6 py-3">
-                <p class="fs-4 fw-bolder text-truncate">{{scheme.name}}</p>
-                <p>{{scheme.desc}}</p>
-                <p>{{scheme.department}}</p>
-            </div>
-            <div class="col-12 d-flex justify-content-around">
-                <a href="{% url 'scheme' scheme.id %}" class="btn btn-white" style="flex : 1">View</a>
-                <a href="{% url 'schemeRegistration' scheme.id %}" class="btn btn-white" style="flex:1">Register</a>
-            </div>
-        </div>
+<div class="row filterRow p-5">
+    <div class="col-12 col-md-8">
+        <form action="{% url 'schemes'%}" method="get" class="position-relative mb-3">
+            <input type="text" name="search" id="search" class="form-control rounded-pill">
+            <button type="submit" class="btn-red btn position-absolute top-0 end-0 rounded-pill"><i
+                    class="fa-solid fa-search"></i></button>
+        </form>
     </div>
 
-    {% endfor %}
+    <div class="col-12 col-md-4 singleCenter">
+        <button class="customDropdownBtn btn text-red border border-2 fw-bolder px-5">Filter &triangledown;</button>
+    </div>
+    <div class="customDropdown col-12 mt-3">
+        <form action="{% url 'schemes' %}" method="get" class="row g-4">
+            <div class="form-check col-12 col-md-4 mb-3 px-5 ">
+                <div class="d-flex align-items-center justify-content-between border-bottom px-2">
+                    <label for="sorted">A-Z</label>
+                    <input type="checkbox" name="sorted" id="sorted" class="form-check-input">
+                </div>
+            </div>
+            <div class="form-check col-12 col-md-4 mb-3 px-5 ">
+                <div class="d-flex align-items-center justify-content-between border-bottom px-2">
+                    <label for="recent">Recently Added</label>
+                    <input type="checkbox" name="recent" id="recent" class="form-check-input">
+                </div>
+            </div>
+            <div class="form-check col-12 col-md-4 mb-3 px-5 ">
+                <div class="d-flex align-items-center justify-content-between border-bottom px-2">
+                    <label for="trending">Trending</label>
+                    <input type="checkbox" name="trending" id="trending" class="form-check-input">
+                </div>
+            </div>
+            <div class="form-group col-12 col-md-4 mb-3 px-5 ">
+                <div class="d-flex align-items-center justify-content-between border-bottom px-2">
+                    <select name="department" id="department" class="form-control">
+                        <option value="">Select Department</option>
+                        <option value="a">A</option>
+                        <option value="a">A</option>
+                        <option value="a">A</option>
+                        <option value="a">A</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 offset-md-8 mb-3">
+                <button type="reset" class="btn btn-red-outlined px-5">Cancel</button>
+                <button type="submit" class="btn-red btn px-5">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row p-5">
+    <div class="col-12 border">
+        <table class="table table-striped">
+            <thead class="bg-darkBlue py-4">
+                <tr>
+                    <th>Scheme ID</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Read more</th>
+                </tr>
+            </thead>
+            <tbody class="bg-lightBlue">
+                {% for scheme in object_list %}
+                <tr>
+                    <td>{{scheme.id}}</td>
+                    <td><img src="{{scheme.img.url}}" alt="{{scheme.name}}"></td>
+                    <td>
+                        <div class="d-flex flex-column">
+                            <p class="display-6 fw-bolder">{{scheme.name}}</p>
+                            <p>{{scheme.desc}}</p>
+                        </div>
+                    </td>
+                    <td><a href="{% url 'scheme' scheme.id %}" class="btn btn-red">Know more</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!--Footer-->

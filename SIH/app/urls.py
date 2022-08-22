@@ -22,7 +22,7 @@ urlpatterns = [
     path('changePassword/', ChangePassword, name="changePassword"),
 
     # scheme related urls
-    path('allSchemes/', Schemes.as_view(), name="schemes"),
+    path('allSchemes/', Schemes, name="schemes"),
     path('addScheme/', CreateScheme, name="addScheme"),
     path('schemeRegistration/<int:pk>',
          SchemeRegistrationView, name="schemeRegistration"),
