@@ -42,6 +42,8 @@ class Document(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     img = models.ImageField(upload_to="profile_pic/", blank=True)
+    email_token = models.CharField(max_length=50)
+    is_verified = models.BooleanField(default=False)
 
     # address
     state = models.CharField(max_length=50)
@@ -63,6 +65,15 @@ class Profile(models.Model):
     occupation = models.CharField(max_length=50)
     sector = models.CharField(max_length=50)
     income = models.IntegerField()
+
+    def __str__(self) -> str:
+        return str(self.user)
+
+
+class UserVerification(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email_token = models.CharField(max_length=200)
+    is_verified = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return str(self.user)
