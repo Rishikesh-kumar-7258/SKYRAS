@@ -1,6 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import datetime
+import json
+json_data = open('/static/states.json')
+data1 = json.load(json_data) # deserialises it
+data2 = json.dumps(data1) # json formatted string
+
+json_data.close()
+
 
 GENDER_CHOICES = (
     ('M', "Male"),
@@ -44,7 +51,7 @@ class Profile(models.Model):
     img = models.ImageField(upload_to="profile_pic/", blank=True)
 
     # address
-    state = models.CharField(max_length=50)
+    state = models.CharField(choices=STATE, max_length=50)
     district = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     pin = models.BigIntegerField()
@@ -85,8 +92,8 @@ class Scheme(models.Model):
     # eligibility
     state = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
-    age_min = models.IntegerField()
-    age_max = models.IntegerField()
+    age_min = models.IntegerField(min_length=1)
+    age_max = models.IntegerField(max_length=110)
     category = models.CharField(max_length=50)
     income_min = models.IntegerField()
     income_max = models.IntegerField()
