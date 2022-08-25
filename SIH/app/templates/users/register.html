@@ -29,14 +29,14 @@
   <!-- End Header section -->
 
   <!-- Register section  -->
-  <section class="row registerSection p-5 mt-3">
+  <section class="row registerSection p-md-5 p-1  mt-3">
     <div class="col-12 col-md-6 offset-md-3">
       <div class="row">
         <div class="col-12 d-flex m-0 p-0">
           <p class="text-center h4 bg-primary text-white p-2 m-0 px-5">Register</p>
         </div>
       </div>
-      <form class="row p-5 border shadow" style="background-color: #EFF4FF;" method="POST" action="{% url 'register' %}">
+      <form class="row p-md-5 p-1  border shadow" style="background-color: #EFF4FF;" method="POST" action="{% url 'register' %}">
         {% csrf_token %}
         <div class="col-6 form-group mb-3">
           <label for="fname">First Name</label>

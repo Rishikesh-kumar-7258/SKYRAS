@@ -27,7 +27,7 @@
         <p class="display-4 fw-bolder">Add Scheme</p>
       </div>
     </div>
-    <form action="{% url 'addScheme' %}" method="POST" class="row shadow p-5" enctype="multipart/form-data"
+    <form action="{% url 'addScheme' %}" method="POST" class="row shadow p-md-5 p-1 " enctype="multipart/form-data"
       style="background-color: #EFF4FF;">
       {% csrf_token %}
       <div class="col-12 col-md-6 row">

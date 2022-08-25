@@ -16,7 +16,7 @@
     <!-- Header  -->
     <header class="row">
         <!-- line for alphabet and language -->
-        <div class="col-12 py-2 d-flex justify-content-end align-items-center bg-darkBlue">
+        <div class="col-12 py-2 d-flex justify-content-end align-items-sm-center bg-darkBlue">
             <div id="fontChanger text-white">
                 <button class="btn text-white">A-</button>
                 <button class="btn text-white">A</button>
@@ -25,7 +25,7 @@
                 <button class="btn">A</button>
                 <button class="btn">A</button> {% endcomment %}
             </div>
-            <div class="d-flex align-items-center text-white">
+            <div class="d-flex align-items-sm-center text-white">
                 <label for="page_language">Language</label>
                 <select id="page_language" class="form-select bg-darkBlue text-white">
                     <option value="en">English</option>
@@ -41,8 +41,8 @@
         <!-- End line for alphabet and language -->
 
         <!--container for logo and heading-->
-        <div style="background-color: #FAE5D3;" class="col-12 middlehead mt-0 d-flex justify-content-evenly">
-            <div class="col-sm-2 col-s-12 d-flex align-items-center justify-content-center">
+        <div style="background-color: #FAE5D3;" class="row middlehead mt-0 d-flex justify-content-evenly">
+            <div class="col-sm-2 col-s-12 d-flex align-items-sm-center justify-content-center">
                 <div class="logo mt-3">
                     <img src="{% static '/img/logo_1.jpeg'%}" style="width:150px;height:150px;margin-bottom:10px;"
                         alt="">
@@ -55,7 +55,7 @@
                     <h6>One Click Benifites</h6>
                 </div>
             </div>
-            <div class="col-sm-2 col-s-12 d-flex align-items-center justify-content-center">
+            <div class="col-sm-2 col-s-12 d-flex align-items-sm-center justify-content-center">
                 <div class="ghasidas_image mt-3">
                     <img src="{% static '/img/logo_2.jpeg'%}" style="height:150px; width:150px; margin-bottom:10px;"
                         alt="">
@@ -76,38 +76,52 @@
                 <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item d-flex">
                         <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}"><span
-                                class="d-flex justify-content-center align-items-center flex-column"><i
+                                class="d-flex justify-content-center align-items-sm-center flex-column"><i
                                     class="fa-solid fa-house-chimney-user"></i> Home </span> </a>
                     </li>
 
                     <li class="nav-item d-flex">
                         <a class="nav-link active" aria-current="page" href="{% url 'schemes' %}"><span
-                                class="d-flex justify-content-center align-items-center flex-column"><i
-                                    class="fa-solid fa-note-sticky"></i> Schemes</span></a>
+                                class="d-flex justify-content-center align-items-sm-center flex-column"><i
+                                    class="fa-solid fa-note-sticky"></i>All Schemes</span></a>
+                    </li>
+
+                    <li class="nav-item d-flex">
+                        <a class="nav-link active" aria-current="page" href="{% url 'searchRegistered' %}"><span
+                                class="d-flex justify-content-center align-items-sm-center flex-column"><i
+                                    class="fa-solid fa-list-ul"></i>
+                                Registered Schemes</span></a>
+                    </li>
+
+                    <li class="nav-item d-flex">
+                        <a class="nav-link active" aria-current="page" href="{% url 'forYou' %}"><span
+                                class="d-flex justify-content-center align-items-sm-center flex-column"><i
+                                    class="fa-solid fa-hand-point-up"></i>
+                                Schemes For You</span></a>
                     </li>
 
                     <li class="nav-item d-flex">
                         <a class="nav-link active" aria-current="page" href="{% url 'contactUs' %}"><span
-                                class="d-flex justify-content-center align-items-center flex-column"><i
+                                class="d-flex justify-content-center align-items-sm-center flex-column"><i
                                     class="fa-solid fa-people-roof"></i> About Us</span></a>
                     </li>
 
 
                     <li class="nav-item d-flex">
                         <a class="nav-link active" aria-current="page" href="{% url 'aboutUs' %}"><span
-                                class="d-flex justify-content-center align-items-center flex-column"><i
+                                class="d-flex justify-content-center align-items-sm-center flex-column"><i
                                     class="fa-solid fa-address-card"></i> Contact </span></a>
                     </li>
                     <li class="nav-item d-flex">
                         <a class="nav-link active" aria-current="page" href="{% url 'help' %}"><span
-                                class="d-flex justify-content-center align-items-center flex-column"><i
+                                class="d-flex justify-content-center align-items-sm-center flex-column"><i
                                     class="fa-solid fa-handshake-angle"></i> Help</span></a>
                     </li>
 
                     {% if user.is_authenticated and user.is_superuser %}
                     <li class="nav-item d-flex">
                         <a href="{% url 'addScheme' %}" aria-current="page" class="nav-link active"> <span
-                                class="d-flex justify-content-center align-items-center flex-column"><i
+                                class="d-flex justify-content-center align-items-sm-center flex-column"><i
                                     class="fa-solid fa-box-tissue"></i>Add Scheme</span> </a>
                     </li>
                     {% endif %}
@@ -116,12 +130,12 @@
             <!-- Sign In Tab -->
             <div class="text-white">
                 {% if user.is_authenticated == False %}
-                <div class="d-flex px-3 align-items-center authArea">
+                <div class="d-flex px-3 align-items-sm-center authArea">
                     <a href="{% url 'login' %}" class="px-3 btn text-white">SignIn</a>
                     <a href="{% url 'register' %}" class="px-3 btn btn-red">Register</a>
                 </div>
                 {% else%}
-                <div class="btn-group dropstart d-flex flex-column align-items-center">
+                <div class="btn-group dropstart d-flex flex-column align-items-sm-center">
                     <img src="{{user.profile.img.url}}" alt="{{user}}" class="img-fluid rounded-pill" width="50px"
                         height="50px">
                     <button class="btn dropdown-toggle text-white" type="button" data-bs-toggle="dropdown"
@@ -134,6 +148,7 @@
                         {% else %}
                         <li><a class="dropdown-item" href="{% url 'completeProfile' %}">Complete Profile</a></li>
                         {% endif %}
+                        <li><a class="dropdown-item" href="{% url 'searchRegistered' %}">Dashboard</a></li>
                         <li><a class="dropdown-item" href="{% url 'changePassword' %}">Change Password</a></li>
                         <hr>
                         <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
@@ -170,8 +185,8 @@
     {% block js %}{% endblock js %}
     <script>
 
-        $("window").scroll(function() {
-            
+        $("window").scroll(function () {
+
         })
 
         $(".backToTop").click(function () {

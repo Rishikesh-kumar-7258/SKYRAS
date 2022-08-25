@@ -10,6 +10,10 @@
     border: 5px solid red;
     overflow: hidden;
     border-radius: 50%;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 200px;
+    max-height: 200px;
   }
 
   .imgDiv a {
@@ -41,92 +45,80 @@
 <!-- Header End  -->
 
 <!-- Profile Section  -->
-<section class="container w-75 px-5 border shadow">
-  <div class="row">
-    <div class="col-12 d-flex align-items-center justify-content-end">
-      <p class="p-3">Personal Detail</p>
-      <p class="p-3">Dashboard</p>
-    </div>
+<section class="row p-1 p-md-5 border shadow">
+  <div class="col-12 d-flex align-items-center justify-content-end">
+    <p class="p-3 display-6 fw-bolder">Personal Detail</p>
   </div>
 
-  <div class="row p-4" style="background-color:#EFF4FF;
-;">
-    <div class="col-md-4 text-center">
-      <div class="d-flex flex-column align-items-center mx-3 position-relative imgDiv">
-        <img src="{{user.profile.img.url}}" alt="{{user.first_name}}" class="rounded-pill img-fluid">
-        <a href="{% url 'editProfilePic' user.profile.id %}" class="p-3">Edit photo</a>
-      </div>
-      <div class="d-flex flex-column border">
-        <p class="fs-4 fw-bolder">{{user.first_name}} {{user.last_name}}</p>
-        <div class="d-flex align-items-center justify-content-around">
-          <a href="tel:{{user.profile.phone_number}}" class="d-flex flex-column text-decoration-none"><i
-              class="fa-solid fa-mobile"></i>Phone</a>
-          <a href="mailto:{{user.email}}" class="d-flex flex-column text-decoration-none"><i
-              class="fa-solid fa-envelope"></i>Email</a>
-        </div>
+  <div class="col-md-4 text-center">
+    <div class="d-flex flex-column align-items-center mx-3 position-relative imgDiv">
+      <img src="{{user.profile.img.url}}" alt="{{user.first_name}}" class="rounded-pill img-fluid">
+      <a href="{% url 'editProfilePic' user.profile.id %}" class="p-3">Edit photo</a>
+    </div>
+    <div class="d-flex flex-column border">
+      <p class="fs-4 fw-bolder">{{user.first_name}} {{user.last_name}}</p>
+      <div class="d-flex align-items-center justify-content-around">
+        <a href="tel:{{user.profile.phone_number}}" class="d-flex flex-column text-decoration-none"><i
+            class="fa-solid fa-mobile"></i>Phone</a>
+        <a href="mailto:{{user.email}}" class="d-flex flex-column text-decoration-none"><i
+            class="fa-solid fa-envelope"></i>Email</a>
       </div>
     </div>
   </div>
 
-  <div class="row mt-5">
-    <div class="col-12 d-flex align-items-center justify-content-between border-bottom border-2">
-      <h4>Personal Details</h4>
-      <a href="{% url 'completeProfile' %}" class="btn btn-success px-5">Edit</a>
+  <div class="col-12 d-flex align-items-center justify-content-between border-bottom border-2">
+    <h4>Personal Details</h4>
+    <a href="{% url 'completeProfile' %}" class="btn btn-success px-5">Edit</a>
+  </div>
+  <div class="col-12 d-flex p-3">
+    <div class="me-5">
+      {% comment %} <p>Name</p> {% endcomment %}
+      <p>Date of Birth</p>
+      <p>Age</p>
+      <p>Gender</p>
+      <p>Category</p>
+      <p>Adhaar Card</p>
     </div>
-    <div class="col-12 d-flex p-3">
-      <div class="me-5">
-        {% comment %} <p>Name</p> {% endcomment %}
-        <p>Date of Birth</p>
-        <p>Age</p>
-        <p>Gender</p>
-        <p>Category</p>
-        <p>Adhaar Card</p>
-      </div>
-      <div class="ms-5">
-        {% comment %} <p>{{user.first_name}} {{user.last_name}}</p> {% endcomment %}
-        <p>{{user.profile.dob}}</p>
-        <p>20</p>
-        <p>{{user.profile.gender}}</p>
-        <p>{{user.profile.category}}</p>
-        <p>{{user.profile.adhaar_number}}</p>
-      </div>
+    <div class="ms-5">
+      {% comment %} <p>{{user.first_name}} {{user.last_name}}</p> {% endcomment %}
+      <p>{{user.profile.dob}}</p>
+      <p>20</p>
+      <p>{{user.profile.gender}}</p>
+      <p>{{user.profile.category}}</p>
+      <p>{{user.profile.adhaar_number}}</p>
     </div>
   </div>
 
-  <div class="row mt-5">
-    <div class="col-12 d-flex align-items-center justify-content-between border-bottom border-2">
-      <h4>Address</h4>
-      <a href="{% url 'completeProfile' %}" class="btn btn-success px-5">Edit</a>
+  <div class="col-12 d-flex align-items-center justify-content-between border-bottom border-2">
+    <h4>Address</h4>
+    <a href="{% url 'completeProfile' %}" class="btn btn-success px-5">Edit</a>
+  </div>
+  <div class="col-12 d-flex p-3">
+    <div class="me-5">
+      <p>Address</p>
+      <p>City</p>
+      <p>District</p>
+      <p>State</p>
+      <p>Pincode</p>
     </div>
-    <div class="col-12 d-flex p-3">
-      <div class="me-5">
-        <p>Address</p>
-        <p>City</p>
-        <p>District</p>
-        <p>State</p>
-        <p>Pincode</p>
-      </div>
-      <div class="ms-5">
-        <p>{{user.profile.state}} , {{user.profile.city}}</p>
-        <p>{{user.profile.city}}</p>
-        <p>{{user.profile.district}}</p>
-        <p>{{user.profile.state}}</p>
-        <p>{{user.profile.pin}}</p>
-      </div>
+    <div class="ms-5">
+      <p>{{user.profile.state}} , {{user.profile.city}}</p>
+      <p>{{user.profile.city}}</p>
+      <p>{{user.profile.district}}</p>
+      <p>{{user.profile.state}}</p>
+      <p>{{user.profile.pin}}</p>
     </div>
   </div>
 
-  <div class="row mt-5">
-    <div class="d-flex align-items-center justify-content-between">
-      <p class="display-5 fw-bolder">Documents</p>
-      <a href="{% url 'addDocument' %}" class="btn btn-success">Upload Documents</a>
-    </div>
-    <div class="d-flex flex-column mb-5">
-      {% for document in documents %}
-      <a href="{{document.file.url}}">{{document.name}}</a>
+  <div class="d-flex align-items-center justify-content-between">
+    <p class="display-5 fw-bolder">Documents</p>
+    <a href="{% url 'addDocument' %}" class="btn btn-success">Upload</a>
+  </div>
+  <div class="d-flex flex-column mb-5">
+    {% for document in documents %}
+    <a href="{{document.file.url}}">{{document.name}}</a>
 
-      {% endfor %}
-    </div>
+    {% endfor %}
 
   </div>
 </section>

@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.db.models import Q
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
@@ -52,14 +53,14 @@ def HomePage(request):
 
     total_users = User.objects.all().count()
     total_schemes = Scheme.objects.all().count()
-    total_benefitted = 0
+    total_benefitted = SchemeTracking.objects.filter(benefitted=True).count()
 
     dict = {
-        "schemes": getLatestSchemes(3),
-        "aboutToLast": aboutToLast(3),
+        "schemes": list(getLatestSchemes(6)),
+        "aboutToLast": list(aboutToLast(3)),
         "total_user": total_users,
         "total_schemes": total_schemes,
-        "total_benfitted": total_benefitted
+        "total_benifitted": total_benefitted
     }
     return render(request, "home.html", dict)
 
@@ -139,8 +140,6 @@ def ChangePassword(request):
 def ProfileView(request):
     documents = Document.objects.filter(user=request.user.id)
     return render(request, "users/profile.html", {"user": request.user, "documents": documents})
-
-# to create profile of the user
 
 
 @login_required
@@ -228,8 +227,7 @@ def CreateScheme(request):
         if form.is_valid():
             form.save()
             # sending mails whenever a scheme is created
-            superusers_emails = User.objects.filter(
-                is_superuser=True).values_list('email')
+            superusers_emails = User.objects.all().values_list('email')
             user_number = Profile.objects.all().values_list('phone_number')
             receivers = [email[0] for email in list(superusers_emails)]
             phone_reciever = [phone[0] for phone in list(user_number)]
@@ -279,9 +277,12 @@ def TrackScheme(request, pk):
     return render(request, "schemes/tracker_scheme.html", {"tracker": tracker})
 
 
-# class OneScheme(DetailView):
-#     model = Scheme
-#     template_name = "schemes/single_scheme.html"
+@login_required
+def SearchRegisteredScheme(request):
+
+    object_list = SchemeRegistration.objects.filter(user=request.user)
+    print(object_list)
+    return render(request, "schemes/search_registered.html", {"object_list": object_list})
 
 
 def OneScheme(request, pk):
@@ -289,3 +290,20 @@ def OneScheme(request, pk):
     dict = get_details(pk)
     dict["object"] = Scheme.objects.get(pk=pk)
     return render(request, "schemes/single_scheme.html", dict)
+
+
+def SchemesForYou(request):
+
+    age = TODAY.year - request.user.profile.dob.year - \
+        ((TODAY.month, TODAY.day) <
+         (request.user.profile.dob.month, request.user.profile.dob.day))
+    object_list = Scheme.objects.filter(
+        age_min__lte=age)
+    object_list = Scheme.objects.filter(
+        age_max__gte=age)
+
+    object_list = object_list.filter(
+        age_max__gte=age)
+
+    print(age)
+    return render(request, "schemes/forYou.html", {"object_list": object_list})

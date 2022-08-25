@@ -1,0 +1,42 @@
+{% include 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+{% endblock body %}
+<div class="row p-md-5 p-1 ">
+  <div class="col-12 border">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="bg-darkBlue py-4">
+          <tr>
+            <th>Scheme ID</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Read more</th>
+          </tr>
+        </thead>
+        <tbody class="bg-lightBlue">
+          {% for object in object_list %}
+          <tr>
+            <th>{{object.scheme.id}}</td>
+            <td><img src="{{object.scheme.img.url}}" alt="{{scheme.name}}" width="200px"></td>
+            <td>
+              <div class="d-flex flex-column">
+                <p class="display-6 fw-bolder">{{object.scheme.name}}</p>
+                <p>{{object.scheme.desc}}</p>
+              </div>
+            </td>
+            <td>
+              <a href="{% url 'scheme' object.scheme.id %}" class="btn btn-red me-3">Know more</a>
+              <a href="{% url 'trackScheme' object.scheme.id %}" class="btn btn-red-outlined">Track Status</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% block js %}
+{% endblock js %}

@@ -73,13 +73,14 @@ DEPARTMENT_CHOICES = (
     ("Ag", "Agriculture"),
 )
 
+
 class Scheme(models.Model):
     name = models.CharField(max_length=50)
     desc = models.TextField()
     startDate = models.DateField()
     endDate = models.DateField()
     img = models.ImageField(upload_to="scheme/")
-    department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES)
+    department = models.CharField(max_length=50)
 
     # eligibility
     state = models.CharField(max_length=50)

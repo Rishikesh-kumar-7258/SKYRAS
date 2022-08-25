@@ -1,0 +1,98 @@
+{% include 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Track {{tracker.scheme.name}} | SIH</title>
+{% endblock title %}
+
+{% block css %}
+<style>
+  .tracker {
+    height: 60vh;
+    width: 15px;
+    background-color: gray;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .filled-bar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: green;
+  }
+
+  .circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: gray;
+    margin: 0;
+  }
+
+  .circle.active {
+    background-color: green;
+  }
+</style>
+{% endblock css %}
+
+
+<div class="row p-md-5 p-1 ">
+  <p class="display-6 fw-bolder">Scheme Tracking</p>
+  <div class="col-6">
+    <div class="tracker">
+      {% if tracker.registered %}
+      <div class="filled-bar" style="height : 25%"></div>
+      <div class="circle active"></div>
+      {% else %}
+      <div class="circle"></div>
+      {% endif %}
+
+      {% if tracker.verified %}
+      <div class="filled-bar" style="height : 75%"></div>
+      <div class="circle active"></div>
+      {% else %}
+      <div class="circle"></div>
+      {% endif %}
+
+      {% if tracker.benefitted %}
+      <div class="filled-bar" style="height : 100%"></div>
+      <div class="circle active"></div>
+      {% else %}
+      <div class="circle"></div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-6 d-flex flex-column justify-content-between">
+    {% if tracker.registered %}
+    <p class="display-6 fw-bolder text-success">Registered</p>
+    {% endif %}
+
+    {% if tracker.verified %}
+    <p class="display-6 fw-bolder text-success">Verified</p>
+
+    {% else %}
+    <p class="display-6 fw-bolder text-danger">Verification in progress</p>
+
+    {% endif %}
+
+    {% if tracker.benefitted %}
+    <p class="display-6 fw-bolder text-success">Fund Released</p>
+
+    {% else %}
+    <p class="display-6 fw-bolder text-danger">Not alloted</p>
+    {% endif %}
+  </div>
+</div>
+{% block body %}
+
+{% endblock body %}
+
+{% block js %}
+<script>
+</script>
+{% endblock js %}

@@ -20,20 +20,20 @@
             <div class="carousel-inner">
                 {% for scheme in schemes %}
                 {% if forloop.first %}
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-bs-interval="1000">
                     <img src="/media/{{scheme.img}}" class="d-block w-100" alt="{{scheme.name}}" height="500px">
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{% url 'scheme' scheme.id %}"
-                            class="text-white text-decoration-none">{{scheme.name}}</a>
+                            class="text-white text-decoration-none fw-bolder display-6">{{scheme.name}}</a>
                         <p>{{scheme.desc}}</p>
                     </div>
                 </div>
                 {% else %}
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="1000">
                     <img src="/media/{{scheme.img}}" class="d-block w-100" alt="{{scheme.name}}" height="500px">
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{% url 'scheme' scheme.id %}"
-                            class="text-white text-decoration-none">{{scheme.name}}</a>
+                            class="text-white text-decoration-none fw-bolder display-6">{{scheme.name}}</a>
                         <p>{{scheme.desc}}</p>
                     </div>
                 </div>
@@ -57,17 +57,18 @@
 <div class="row">
     <div class="col-md-12 px-5 bg-darkBlue text-white">
         <marquee behavior="scroll" direction="left" class="text-danger bg-white m-0 py-2 fw-bolder">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique cumque tempora totam, cupiditate magni
-                alias excepturi minus iure praesentium corporis dolor eligendi ullam harum. Id ullam at cum? Excepturi
-                unde officia explicabo perspiciatis facilis a fuga laboriosam? Nemo iusto, minima repudiandae nobis
-                error libero? Rerum voluptatibus pariatur ab neque molestias?
+            <p>In May 2016, the Ministry of Petroleum and Natural Gas (MOPNG), introduced the ‘Pradhan Mantri Ujjwala
+                Yojana’ (PMUY) as a flagship scheme with an objective to make clean cooking fuels such as LPG available
+                to rural and deprived households which were otherwise using traditional cooking fuels such as firewood,
+                coal, cow-dung cakes etc. Usage of conventional cooking fuels had detrimental impacts on rural women's
+                health and the environment.
             </p>
         </marquee>
     </div>
 </div>
 
 <!-- about us  -->
-<div class="row p-5">
+<div class="row p-md-5 p-1 ">
     <div class="col-12">
         <p class="display-6 fw-bolder text-darkBlue">About Jan Swayam Kalyan Portal</p>
     </div>
@@ -79,13 +80,13 @@
     </div>
 </div>
 
-<div class="row p-5 bg-lightRed">
+<div class="row p-md-5 p-1  bg-lightRed">
     <div class="col-12">
         <p class="display-6 fw-bolder text-darkBlue">Services We Provide</p>
     </div>
     <div class="col-12">
         <div class="row">
-            <div class="col-12 col-md-3 p-5">
+            <div class="col-12 col-md-3 p-md-5 p-1 ">
                 <div class="d-flex flex-column bg-white text-center border px-3 py-4 justify-content-between"
                     style="height: 100%;">
                     <i class="fa-solid fa-clipboard-list display-4"></i>
@@ -93,7 +94,7 @@
                     <a href="#" class="btn btn-danger">Open</a>
                 </div>
             </div>
-            <div class="col-12 col-md-3 p-5">
+            <div class="col-12 col-md-3 p-md-5 p-1 ">
                 <div class="d-flex flex-column bg-white text-center border px-3 py-4 justify-content-between"
                     style="height: 100%;">
                     <i class="fa-solid fa-book display-4"></i>
@@ -101,7 +102,7 @@
                     <a href="#" class="btn btn-danger">Open</a>
                 </div>
             </div>
-            <div class="col-12 col-md-3 p-5">
+            <div class="col-12 col-md-3 p-md-5 p-1 ">
                 <div class="d-flex flex-column bg-white text-center border px-3 py-4 justify-content-between"
                     style="height: 100%;">
                     <i class="fa-solid fa-shield display-4"></i>
@@ -109,7 +110,7 @@
                     <a href="#" class="btn btn-danger">Open</a>
                 </div>
             </div>
-            <div class="col-12 col-md-3 p-5">
+            <div class="col-12 col-md-3 p-md-5 p-1 ">
                 <div class="d-flex flex-column bg-white text-center border px-3 py-4 justify-content-between"
                     style="height: 100%;">
                     <i class="fa-solid fa-plane-departure display-4"></i>
@@ -121,69 +122,25 @@
     </div>
 </div>
 
-<div class="row latest-notice p-5">
+<div class="row latest-notice p-md-5 p-1 ">
     <div class="col-12">
         <p class="display-6 fw-bolder text-darkBlue">Latest Schemes</p>
     </div>
     <div class="col-12">
-        <div class="row p-5 bg-white">
-            <div class="col-md-6 col-12">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action border-bottom-blue mb-4"
-                        aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">Some placeholder content in a paragraph.</p>
-                        <small>And some small print.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-bottom-blue mb-4">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Some placeholder content in a paragraph.</p>
-                        <small class="text-muted">And some muted small print.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-bottom-blue mb-4">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Some placeholder content in a paragraph.</p>
-                        <small class="text-muted">And some muted small print.</small>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 col-12">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action border-bottom-blue mb-4"
-                        aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">Some placeholder content in a paragraph.</p>
-                        <small>And some small print.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-bottom-blue mb-4">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Some placeholder content in a paragraph.</p>
-                        <small class="text-muted">And some muted small print.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-bottom-blue mb-4">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Some placeholder content in a paragraph.</p>
-                        <small class="text-muted">And some muted small print.</small>
-                    </a>
-                </div>
+        <div class="row p-md-5 p-1  bg-white">
+            <div class="list-group">
+                {% for scheme in schemes %}
+                <a href="{% url 'scheme' scheme.id %}"
+                    class="col-12 col-md-6 list-group-item list-group-item-action border-bottom-blue mb-4"
+                    aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 fw-bolder">{{scheme.name}}</h5>
+                        <small>{{scheme.startDate}}</small>
+                    </div>
+                    <p class="mb-1">{{scheme.desc}}</p>
+                    <small>{{scheme.department}}</small>
+                </a>
+                {% endfor %}
             </div>
             <div class="col-12">
                 <a href="#" class="btn btn-red w-100 p-3 fw-bolder text-white text-center">
@@ -194,7 +151,7 @@
     </div>
 </div>
 
-<div class="row recent-activity p-5">
+<div class="row recent-activity p-md-5 p-1 ">
     <div class="col-12">
         <p class="display-6 fw-bolder text-darkBlue">Recent Activity</p>
     </div>
@@ -233,26 +190,26 @@
     </div>
 </div>
 
-<div class="row statistics p-5 bg-lightRed">
+<div class="row statistics p-md-5 p-1  bg-lightRed">
     <div class="col-12">
         <p class="display-6 fw-bolder p-y-2 px-3 m-0">Statistics</p>
     </div>
     <div class="col-12">
         <div class="row gx-5 text-center">
-            <div class="col-12 col-md-4 p-5">
-                <div class="d-flex flex-column border p-5 bg-white">
+            <div class="col-12 col-md-4 p-md-5 p-1 ">
+                <div class="d-flex flex-column border p-md-5 p-1  bg-white">
                     <p class="fs-4 fw-bolder text-darkBlue">Total Users</p>
                     <p class="fw-bolder fs-1 text-red">{{total_user}}</p>
                 </div>
             </div>
-            <div class="col-12 col-md-4 d-flex flex-column p-5">
-                <div class="d-flex flex-column border p-5 bg-white">
+            <div class="col-12 col-md-4 d-flex flex-column p-md-5 p-1 ">
+                <div class="d-flex flex-column border p-md-5 p-1  bg-white">
                     <p class="fs-4 fw-bolder text-darkBlue">Total Schemes</p>
                     <p class="fw-bolder fs-1 text-red">{{total_schemes}}</p>
                 </div>
             </div>
-            <div class="col-12 col-md-4 d-flex flex-column p-5">
-                <div class="d-flex flex-column border p-5 bg-white">
+            <div class="col-12 col-md-4 d-flex flex-column p-md-5 p-1 ">
+                <div class="d-flex flex-column border p-md-5 p-1  bg-white">
                     <p class="fs-4 fw-bolder text-darkBlue">Total Benefitted</p>
                     <p class="fw-bolder fs-1 text-red">{{total_benfitted}}</p>
                 </div>
@@ -261,7 +218,7 @@
     </div>
 </div>
 
-<footer class="row p-5 bg-darkBlue text-white">
+<footer class="row p-md-5 p-1  bg-darkBlue text-white">
     <div class="col-12 col-md-6">
         <div class="row">
             <div class="col-12">

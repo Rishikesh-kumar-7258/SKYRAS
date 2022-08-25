@@ -13,14 +13,14 @@
 {% endblock css %}
 {% block body%}
 
-<div class="row p-5">
+<div class="row p-md-5 p-1 ">
     <div class="col-12">
         <p class="display-6 fw-bolder text-darkBlue">Schemes</p>
         <p class="fw-bolder">We provide you number of schemes to benefit you as per your requirment.</p>
     </div>
 </div>
 
-<div class="row filterRow p-5">
+<div class="row filterRow p-md-5 p-1 ">
     <div class="col-12 col-md-8">
         <form action="{% url 'schemes'%}" method="get" class="position-relative mb-3 shadow rounded-pill">
             <input type="text" name="search" id="search" class="form-control rounded-pill"
@@ -73,33 +73,38 @@
     </div>
 </div>
 
-<div class="row p-5">
+<div class="row p-md-5 p-1 ">
     <div class="col-12 border">
-        <table class="table">
-            <thead class="bg-darkBlue py-4">
-                <tr>
-                    <th>Scheme ID</th>
-                    <th>Image</th>
-                    <th>Description</th>
-                    <th>Read more</th>
-                </tr>
-            </thead>
-            <tbody class="bg-lightBlue">
-                {% for scheme in object_list %}
-                <tr>
-                    <th>{{scheme.id}}</td>
-                    <td><img src="{{scheme.img.url}}" alt="{{scheme.name}}" width="200px"></td>
-                    <td>
-                        <div class="d-flex flex-column">
-                            <p class="display-6 fw-bolder">{{scheme.name}}</p>
-                            <p>{{scheme.desc}}</p>
-                        </div>
-                    </td>
-                    <td><a href="{% url 'scheme' scheme.id %}" class="btn btn-red">Know more</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="bg-darkBlue py-4">
+                    <tr>
+                        <th>Scheme ID</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Read more</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-lightBlue">
+                    {% for scheme in object_list %}
+                    <tr>
+                        <th>{{scheme.id}}</td>
+                        <td><img src="{{scheme.img.url}}" alt="{{scheme.name}}" width="200px"></td>
+                        <td>
+                            <div class="d-flex flex-column">
+                                <p class="display-6 fw-bolder">{{scheme.name}}</p>
+                                <p>{{scheme.desc}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="{% url 'scheme' scheme.id %}" class="btn btn-red me-3">Know more</a>
+                            <a href="{% url 'schemeRegistration' scheme.id %}" class="btn btn-red-outlined">Register</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
