@@ -12,6 +12,7 @@ body {
 /*######################## Background color classes #######################*/
 .bg-red{
   background-color: #e20a4a;
+  color : white;
 }
 
 .bg-lightBlue{
@@ -24,6 +25,7 @@ body {
 
 .bg-darkBlue{
   background-color: #3b447a;
+  color : white;
 }
 
 .bg-lightWhite{
@@ -31,7 +33,7 @@ body {
 }
 
 .bg-lightRed{
-  background-color: #DEACD926;
+  background-color: #deacb9;
 }
 
 /*######################## Font color classes #######################*/
@@ -51,9 +53,28 @@ body {
 /*######################## Button classes #######################*/
 .btn-red{
   background-color : #e20a4a;
+  color : white;
 }
 .btn-red:hover{
   background-color: #f03f74;
+}
+
+.btn-red-outlined{
+  background-color: transparent;
+  border: 1px solid #e20a4a;
+  color: #e20a4a;
+}
+
+.btn-red-outlined:hover{
+  background-color: #e20a4a;
+  color: white;
+}
+
+/*######################## Utility classes #######################*/
+.singleCenter{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /*######################## HOMEPAGE #######################*/
@@ -75,4 +96,8 @@ footer a{
   place-items: center;
   text-decoration: none;
   padding : 0;
+}
+
+.statistics *{
+  height: 100%;
 }

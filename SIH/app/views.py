@@ -13,7 +13,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
 from django.utils import timezone
-# from sms import send_sms
+from sms import send_sms
 
 
 ################################# Utility Variables ################################################
@@ -24,7 +24,6 @@ TODAY = timezone.now()
 
 def getLatestSchemes(count):
     s = Scheme.objects.all().order_by("startDate").values()[:count]
-    print(s)
     return s
 
 
@@ -35,13 +34,34 @@ def aboutToLast(count):
     return s
 
 
+def get_details(pk):
+    """ gets details of a particular scheme """
+    details = {
+        "total_registered": SchemeRegistration.objects.filter(scheme=pk).count(),
+        "total_benefitted": SchemeTracking.objects.filter(scheme=pk, benefitted=True).count()
+    }
+    return details
+
+
 def isSuperUser(user):
     return user.is_superuser
 
 
 #################################### Normal Views ################################################
 def HomePage(request):
-    return render(request, "home.html", {"schemes": getLatestSchemes(3), "aboutToLast": aboutToLast(3)})
+
+    total_users = User.objects.all().count()
+    total_schemes = Scheme.objects.all().count()
+    total_benefitted = 0
+
+    dict = {
+        "schemes": getLatestSchemes(3),
+        "aboutToLast": aboutToLast(3),
+        "total_user": total_users,
+        "total_schemes": total_schemes,
+        "total_benfitted": total_benefitted
+    }
+    return render(request, "home.html", dict)
 
 
 class Help(TemplateView):
@@ -170,10 +190,34 @@ def Login(request):
 
 
 ################################# Scheme related views ################################################
-class Schemes(ListView):
-    model = Scheme
-    template_name = "schemes/scheme.html"
-    queryset = Scheme.objects.all()
+# class Schemes(ListView):
+#     model = Scheme
+#     template_name = "schemes/scheme.html"
+#     queryset = Scheme.objects.all()
+
+def Schemes(request):
+
+    if request.method == "GET":
+        data = Scheme.objects.all()
+
+        search = request.GET.get("search")
+        if search:
+            data = data.filter(name__icontains=search)
+
+        recent = request.GET.get("recent")
+        if recent and recent == "on":
+            data = data.filter(endDate__range=(
+                TODAY-timezone.timedelta(days=30), TODAY)).order_by("endDate")
+
+        department = request.GET.get("department")
+        if department and recent == "on":
+            data = data.filter(department=department)
+
+        sorted = request.GET.get("sorted")
+        if sorted and sorted == "on":
+            data = data.order_by("name")
+
+        return render(request, "schemes/scheme.html", {"object_list": data})
 
 
 @user_passes_test(isSuperUser)
@@ -186,13 +230,13 @@ def CreateScheme(request):
             # sending mails whenever a scheme is created
             superusers_emails = User.objects.filter(
                 is_superuser=True).values_list('email')
-            # user_number = Profile.objects.all().values_list('phone_number')
+            user_number = Profile.objects.all().values_list('phone_number')
             receivers = [email[0] for email in list(superusers_emails)]
-            # phone_reciever = [phone[0] for phone in list(user_number)]
+            phone_reciever = [phone[0] for phone in list(user_number)]
             subject = "New scheme created"
             body = "A new scheme is created please visit the website to know more"
             send_mail(subject, body, 'SKYRAS', receivers, fail_silently=False)
-            # send_sms(body, "SKYRAS", phone_reciever, fail_silently=False)
+            send_sms(body, "SKYRAS", phone_reciever, fail_silently=False)
             return redirect('homepage')
         else:
             return HttpResponse(form.errors)
@@ -235,6 +279,13 @@ def TrackScheme(request, pk):
     return render(request, "schemes/tracker_scheme.html", {"tracker": tracker})
 
 
-class OneScheme(DetailView):
-    model = Scheme
-    template_name = "schemes/single_scheme.html"
+# class OneScheme(DetailView):
+#     model = Scheme
+#     template_name = "schemes/single_scheme.html"
+
+
+def OneScheme(request, pk):
+
+    dict = get_details(pk)
+    dict["object"] = Scheme.objects.get(pk=pk)
+    return render(request, "schemes/single_scheme.html", dict)
