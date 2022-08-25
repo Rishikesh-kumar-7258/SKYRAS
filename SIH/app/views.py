@@ -1,5 +1,5 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
-from .models import Document, Scheme, Profile, SchemeRegistration, SchemeTracking
+from .models import Document, Scheme, Profile, SchemeRegistration, SchemeTracking, UserVerification
 from .forms import CompleteProfileForm, CreateDocumentForm, EditProfilePictureForm, LoginForm, RegisterForm, CreateSchemeForm, SchemeRegistrationForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
@@ -15,7 +15,8 @@ from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
 from django.utils import timezone
 from sms import send_sms
-
+from django.conf import settings
+import uuid
 
 ################################# Utility Variables ################################################
 TODAY = timezone.now()
@@ -48,7 +49,20 @@ def isSuperUser(user):
     return user.is_superuser
 
 
+def send_email_token(email, token):
+    try:
+        subject = "Your account needs to be verified"
+        message = f"Click on the link to verify http://localhost:8000/verify/{token}/"
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email, ]
+        send_mail(subject, message, email_from, recipient_list)
+    except Exception as e:
+        return False
+    return True
+
 #################################### Normal Views ################################################
+
+
 def HomePage(request):
 
     total_users = User.objects.all().count()
@@ -110,11 +124,45 @@ class deleteDocument(LoginRequiredMixin, DeleteView):
 
 
 ######################## User Registration and Login related views #################################
-class SignUp(CreateView):
-    model = User
-    form_class = RegisterForm
-    template_name: str = "users/register.html"
-    success_url = reverse_lazy('login')
+# class SignUp(CreateView):
+#     model = User
+#     form_class = RegisterForm
+#     template_name: str = "users/register.html"
+#     success_url = reverse_lazy('login')
+
+
+def SignUp(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST, request.FILES)
+        username = request.POST.get("username")
+
+        if form.is_valid:
+            form.save()
+
+            verfication_obj = UserVerification.objects.create(
+                user=User.objects.get(username=username),
+                email_token=str(uuid.uuid4())
+            )
+
+            send_email_token(request.POST.get("email"),
+                             verfication_obj.email_token)
+            return redirect("login")
+
+    else:
+        form = RegisterForm()
+
+        return render(request, "users/register.html", {"form": form})
+
+
+def Verify(request, token):
+    try:
+        obj = UserVerification.objects.get(email_token=token)
+        obj.is_verified = True
+        obj.save()
+
+        return HttpResponse("your account has been verified")
+    except Exception as e:
+        return HttpResponse("Invalid token")
 
 
 @login_required
@@ -305,5 +353,6 @@ def SchemesForYou(request):
     object_list = object_list.filter(
         age_max__gte=age)
 
+    object_list = object_list.filter()
     print(age)
     return render(request, "schemes/forYou.html", {"object_list": object_list})
