@@ -104,7 +104,7 @@
                 <tr>
                     <th scope="row">1</th>
                     <td>
-                        The age of benificiary is between {{object.age_from}} and {{object.age_to}} years.
+                        The age of benificiary is between {{object.age_min}} and {{object.age_max}} years.
                     </td>
         
         
@@ -138,7 +138,7 @@
                 <tr>
                     <th scope="row">4</th>
                     <td>
-                        The income of benificiary is between {{object.income_from}} and {{object.income_to}}
+                        The income of benificiary is between {{object.income_min}} and {{object.income_max}}
 
                     </td>
         
@@ -183,14 +183,9 @@
             <tr>
                
                 <td>
-                    <a href="{{object.form_link}}" class="btn btn-warningzXz">Click here to apply</a>
-
+                    <a href="{% url 'schemeRegistration' object.id %}" class="btn btn-red">Click here to apply</a>
                 </td>
-    
-    
             </tr>
-    
-    
         </tbody>
     </table>
     </section>

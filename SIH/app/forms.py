@@ -66,6 +66,7 @@ class CompleteProfileForm(forms.ModelForm):
         fields = "__all__"
 
 
+
 class EditProfilePictureForm(forms.ModelForm):
     class Meta:
         model = Profile

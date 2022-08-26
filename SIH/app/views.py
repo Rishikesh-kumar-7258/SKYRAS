@@ -60,6 +60,17 @@ def send_email_token(email, token):
         return False
     return True
 
+
+def send_sms_token(phone, token):
+    try:
+        subject = "Your account needs to be verified"
+        message = f"Congratulations Use, you have successfullly reistered in Jan Swayam Kalyan Portal. Now, get all updates about schemes best suited for you. Click on the link to verify the email http://localhost:8000/verify/{token}/"
+        recipient_list = [phone, ]
+        send_sms(message, "SKYRAS", recipient_list, fail_silently=False)
+    except Exception as e:
+        return False
+    return True
+
 #################################### Normal Views ################################################
 
 
@@ -369,7 +380,9 @@ def SchemesForYou(request):
         age_max__gte=age)
 
     object_list = object_list.filter(
-        age_max__gte=age)
+        income_min__lte=request.user.profile.income)
+    object_list = object_list.filter(
+        income_max__gte=request.user.profile.income)
 
     object_list = object_list.filter()
     print(age)

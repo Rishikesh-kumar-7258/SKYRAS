@@ -25,18 +25,8 @@
                 <button class="btn">A</button>
                 <button class="btn">A</button> {% endcomment %}
             </div>
-            <div class="d-flex align-items-sm-center text-white">
-                <label for="page_language">Language</label>
-                <select id="page_language" class="form-select bg-darkBlue text-white">
-                    <option value="en">English</option>
-                    <option value="hin">Hindi</option>
-                    <option value="tel">Telugu</option>
-                    <option value="tam">Tamil</option>
-                    <option value="kan">Kannada</option>
-                    <option value="mal">Malayalam</option>
-                    <option value="mar">Marathi</option>
-                </select>
-            </div>
+            
+    <div id="google_translate_element"></div>
         </div>
         <!-- End line for alphabet and language -->
 
@@ -181,10 +171,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
         integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
         crossorigin="anonymous"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 
     {% block js %}{% endblock js %}
-    <script>
+    <script type="text/javascript">
 
 
         $(".backToTop").click(function () {
@@ -192,7 +184,13 @@
                 scrollTop: 0
             }, 100);
         });
+
+        function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+
     </script>
+
 </body>
 
 </html>
