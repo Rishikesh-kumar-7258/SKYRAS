@@ -53,7 +53,6 @@ class Profile(models.Model):
     is_verified = models.BooleanField(default=False)
 
     # address
-    state = models.CharField(choices=STATE, max_length=50)
     district = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     pin = models.BigIntegerField()
