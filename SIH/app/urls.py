@@ -14,7 +14,7 @@ urlpatterns = [
 
     # user related urls
     path('register', SignUp, name="register"),
-    path('login/', Login, name="login"),
+#     path('login/', Login, name="login"),
     path('completeProfile/', CompleteProfile, name="completeProfile"),
     path('profile/', ProfileView, name="profile"),
     path('editProfilePic/<int:pk>',

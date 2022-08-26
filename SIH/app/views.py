@@ -52,7 +52,7 @@ def isSuperUser(user):
 def send_email_token(email, token):
     try:
         subject = "Your account needs to be verified"
-        message = f"Click on the link to verify http://localhost:8000/verify/{token}/"
+        message = f"Congratulations Use, you have successfullly reistered in Jan Swayam Kalyan Portal. Now, get all updates about schemes best suited for you. Click on the link to verify the email http://localhost:8000/verify/{token}/"
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [email, ]
         send_mail(subject, message, email_from, recipient_list)
@@ -272,6 +272,7 @@ def CreateScheme(request):
 
     if request.method == "POST":
         form = CreateSchemeForm(request.POST, request.FILES)
+        department = request.POST.get("department")
         if form.is_valid():
             form.save()
             # sending mails whenever a scheme is created
@@ -280,7 +281,7 @@ def CreateScheme(request):
             receivers = [email[0] for email in list(superusers_emails)]
             phone_reciever = [phone[0] for phone in list(user_number)]
             subject = "New scheme created"
-            body = "A new scheme is created please visit the website to know more"
+            body = f"Dear User, a new scheme has been launched by {department}. For more information visit the website http://localhost:8000/schemes"
             send_mail(subject, body, 'SKYRAS', receivers, fail_silently=False)
             send_sms(body, "SKYRAS", phone_reciever, fail_silently=False)
             return redirect('homepage')
@@ -299,9 +300,7 @@ def SchemeRegistrationView(request, pk):
             user=request.user, scheme=Scheme.objects.get(pk=pk), registered=True)
 
         if form.is_valid():
-
             tracker.save()
-
             form_obj = form.save(commit=False)
             form_obj.user = request.user
             form_obj.scheme = Scheme.objects.get(pk=pk)
@@ -315,7 +314,26 @@ def SchemeRegistrationView(request, pk):
         if SchemeRegistration.objects.filter(scheme=pk, user=request.user.id).exists():
             exists = True
         form = SchemeRegistrationForm()
-        return render(request, "schemes/register.html", {"form": form, "pk": pk, "exists": exists})
+        document_list = Scheme.objects.get(
+            pk=pk).documents_required
+        document_list = document_list.split(",")
+        present_documents = Document.objects.filter(user=request.user)
+
+        print(document_list, present_documents)
+
+        for document in present_documents:
+            for doc2 in document_list:
+                if document.name.lower() == doc2.lower():
+                    document_list.remove(doc2)
+
+        return render(request, "schemes/register.html",
+                      {
+                          "form": form,
+                          "pk": pk,
+                          "exists": exists,
+                          "documents_required": document_list,
+                          "document_required_count": len(document_list)
+                      })
 
 
 @login_required

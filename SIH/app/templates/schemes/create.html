@@ -100,9 +100,13 @@
           {% render_field form.qualification type="text" id="qualification" class="form-control" placeholder="Enter qualification"%}
         </div>
       </div>
+      <div class="form-group mb-3 col-12">
+        <label for="documents_required">Documents required</label>
+        {% render_field form.documents_required type="text" id="documents_required" class="form-control" placeholder="Enter documents requires separated by comma"%}
+      </div>
       <div class="form-group mb-3 col-8">
         <label for="captcha">Captcha</label>
-        {% render_field form.captcha type="text" id="captcha" class="form-control" placeholder="Enter Captcha"%}
+        {%render_field form.captcha id="captcha" class="form-control" placeholder="Enter Captcha"%}
       </div>
       {% comment %} {{form.as_p}} {% endcomment %}
       <div class="form-group mb-3 col-4 d-flex align-items-end">
@@ -115,3 +119,14 @@
   </div>
 </section>
 {% endblock body %}
+
+{% block js %}
+<script>
+  $('.captcha').click(function () {
+        $.getJSON("/captcha/refresh/", function (result) {
+            $('.captcha').attr('src', result['image_url']);
+            $('#id_captcha_0').val(result['key'])
+        });
+    });
+</script>
+{% endblock js %}

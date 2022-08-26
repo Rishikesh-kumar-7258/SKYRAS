@@ -29,7 +29,11 @@ INSTALLED_APPS = [
     'widget_tweaks',
     "app",
     "captcha",
-    "sms"
+    "sms",
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'two_factor',
 ]
 
 MIDDLEWARE = [
@@ -38,6 +42,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    'django_otp.middleware.OTPMiddleware',
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -98,8 +103,10 @@ EMAIL_HOST_USER = 'skyras.sih@gmail.com'
 EMAIL_HOST_PASSWORD = 'qilrwoxeccqfkdjn'
 EMAIL_USE_SSL = True
 
-LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/"
+# LOGIN_URL = "/login/"
+# LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = 'two_factor:login'
+LOGIN_REDIRECT_URL = 'two_factor:profile'
 LOGOUT_REDIRECT_URL = "homepage"
 
 

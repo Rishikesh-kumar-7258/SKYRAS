@@ -9,6 +9,13 @@
 <p class="display-4 fw-bolder">You have already registered for this scheme</p>
 <a href="{% url 'trackScheme' pk %}">Track your progress</a>
 {% else %}
+{% if document_required_count > 0 %}
+<p class="fs-4">Please submit the following documents before submitting the form.</p>
+{% for document in documents_required %}
+<p>{{document}}</p>
+{% endfor %}
+<a href="{% url 'addDocument' %}">Upload Documents</a>
+{% else %}
 <form action="{% url 'schemeRegistration' pk %}" method="post" class="col-12 col-md-8 offset-md-2">
   {% csrf_token %}
   <p class="display-4 fw-bolder">Enter Captcha to confirm</p>
@@ -19,6 +26,6 @@
   <button type="submit" class="btn btn-success">Submit</button>
 </form>
 {% endif %}
-
+{% endif %}
 {% endblock body %}
 {% block js %}{% endblock js %}

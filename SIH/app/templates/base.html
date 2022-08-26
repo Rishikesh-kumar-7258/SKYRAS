@@ -93,13 +93,14 @@
                                 Registered Schemes</span></a>
                     </li>
 
+                    {% if user.is_authenticated %}
                     <li class="nav-item d-flex">
                         <a class="nav-link active" aria-current="page" href="{% url 'forYou' %}"><span
                                 class="d-flex justify-content-center align-items-sm-center flex-column"><i
                                     class="fa-solid fa-hand-point-up"></i>
                                 Schemes For You</span></a>
                     </li>
-
+{% endif %}
                     <li class="nav-item d-flex">
                         <a class="nav-link active" aria-current="page" href="{% url 'contactUs' %}"><span
                                 class="d-flex justify-content-center align-items-sm-center flex-column"><i
@@ -185,9 +186,6 @@
     {% block js %}{% endblock js %}
     <script>
 
-        $("window").scroll(function () {
-
-        })
 
         $(".backToTop").click(function () {
             $("html, body").animate({

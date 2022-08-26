@@ -105,6 +105,8 @@ class Scheme(models.Model):
     occupation = models.CharField(max_length=50)
     qualification = models.CharField(max_length=50)
 
+    documents_required = models.CharField(max_length=1000)
+
     def __str__(self) -> str:
         return str(self.name)
 
