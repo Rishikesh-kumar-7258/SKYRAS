@@ -42,6 +42,8 @@ def get_details(pk):
         "total_registered": SchemeRegistration.objects.filter(scheme=pk).count(),
         "total_benefitted": SchemeTracking.objects.filter(scheme=pk, benefitted=True).count()
     }
+
+    details["total_benefitted"] = 0
     return details
 
 
@@ -198,7 +200,10 @@ def ChangePassword(request):
 @login_required
 def ProfileView(request):
     documents = Document.objects.filter(user=request.user.id)
-    return render(request, "users/profile.html", {"user": request.user, "documents": documents})
+    age = TODAY.year - request.user.profile.dob.year - \
+        ((TODAY.month, TODAY.day) <
+         (request.user.profile.dob.month, request.user.profile.dob.day))
+    return render(request, "users/profile.html", {"user": request.user, "documents": documents, "age" : age})
 
 
 @login_required

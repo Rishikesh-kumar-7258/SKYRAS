@@ -91,7 +91,6 @@
                     style="height: 100%;">
                     <i class="fa-solid fa-clipboard-list display-4"></i>
                     <p class="fs-4 fw-bolder">Schemes</p>
-                    <a href="#" class="btn btn-danger">Open</a>
                 </div>
             </div>
             <div class="col-12 col-md-3 p-md-5 p-1 ">
@@ -99,7 +98,6 @@
                     style="height: 100%;">
                     <i class="fa-solid fa-book display-4"></i>
                     <p class="fs-4 fw-bolder">Information of Schemes</p>
-                    <a href="#" class="btn btn-danger">Open</a>
                 </div>
             </div>
             <div class="col-12 col-md-3 p-md-5 p-1 ">
@@ -107,7 +105,6 @@
                     style="height: 100%;">
                     <i class="fa-solid fa-shield display-4"></i>
                     <p class="fs-4 fw-bolder">Eligibility of Schemes</p>
-                    <a href="#" class="btn btn-danger">Open</a>
                 </div>
             </div>
             <div class="col-12 col-md-3 p-md-5 p-1 ">
@@ -115,7 +112,6 @@
                     style="height: 100%;">
                     <i class="fa-solid fa-plane-departure display-4"></i>
                     <p class="fs-4 fw-bolder">Schemes Tracking</p>
-                    <a href="#" class="btn btn-danger">Open</a>
                 </div>
             </div>
         </div>
@@ -157,35 +153,15 @@
     </div>
     <div class="col-12">
         <div class="row">
+            {% for scheme in aboutToLast %}
             <div class="col-12 col-md-4 bg-white">
                 <div class="d-flex flex-column text-center px-3 py-4 justify-content-between" style="height: 100%;">
-                    <img src="https://source.unsplash.com/random?village" alt="#">
-                    <p class="fs-4 fw-bolder p-3 bg-darkBlue text-white">Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit.
-                        Eveniet,
-                        amet.
+                    <img src="/media/{{scheme.img}}" alt="{{scheme.name}}">
+                    <p class="fs-4 fw-bolder p-3 bg-darkBlue text-white">{{scheme.desc}}
                     </p>
                 </div>
             </div>
-            <div class="col-12 col-md-4 bg-white">
-                <div class="d-flex flex-column text-center px-3 py-4 justify-content-between" style="height: 100%;">
-                    <img src="https://source.unsplash.com/random?village" alt="#">
-                    <p class="fs-4 fw-bolder p-3 bg-darkBlue text-white">Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit.
-                        Dignissimos,
-                        sit?</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 bg-white">
-                <div class="d-flex flex-column text-center px-3 py-4 justify-content-between" style="height: 100%;">
-                    <img src="https://source.unsplash.com/random?village" alt="#">
-                    <p class="fs-4 fw-bolder p-3 bg-darkBlue text-white">Lorem, ipsum dolor sit amet consectetur
-                        adipisicing elit.
-                        Officiis,
-                        natus.
-                    </p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -211,7 +187,7 @@
             <div class="col-12 col-md-4 d-flex flex-column p-md-5 p-1 ">
                 <div class="d-flex flex-column border p-md-5 p-1  bg-white">
                     <p class="fs-4 fw-bolder text-darkBlue">Total Benefitted</p>
-                    <p class="fw-bolder fs-1 text-red">{{total_benfitted}}</p>
+                    <p class="fw-bolder fs-1 text-red">{{total_benefitted}}</p>
                 </div>
             </div>
         </div>
