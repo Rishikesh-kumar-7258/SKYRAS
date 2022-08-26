@@ -1,6 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import datetime
+# import json
+# json_data = open()
+# data1 = json.load(json_data) # deserialises it
+# data2 = json.dumps(data1) # json formatted string
+
+# json_data.close()
+
 
 GENDER_CHOICES = (
     ('M', "Male"),
@@ -46,7 +53,6 @@ class Profile(models.Model):
     is_verified = models.BooleanField(default=False)
 
     # address
-    state = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     pin = models.BigIntegerField()
