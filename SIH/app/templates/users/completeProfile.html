@@ -39,31 +39,79 @@
   <!-- Which form you are at  End -->
 
   <!-- Register section  -->
-  <section class="row completeProfileSection p-md-5 p-1  shadow">
-    <div class="col-12 col-md-6 offset-md-3">
-      <div class="row">
-        <div class="col-12 d-flex m-0 p-0">
-          <p class="text-center h4 bg-primary text-white p-2 m-0 px-5">Complete Profile</p>
-        </div>
+<section class="row completeProfileSection p-md-5 p-1  shadow">
+  <div class="col-12 col-md-6 offset-md-3">
+    <div class="row">
+      <div class="col-12 d-flex m-0 p-0">
+        <p class="text-center h4 bg-primary text-white p-2 m-0 px-5">Complete Profile</p>
       </div>
-      <form class="row border shadow p-md-5 p-1 " action="{% url 'completeProfile' %}" method="POST" style="background-color: #EFF4FF;" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        {% comment %} <div class="form-group mb-3">
-          <label for="img">Profile Image</label>
-          {% render_field form.img id="img" class="form-control"%}
-        </div>
-        <div class="form-group mb-3">
-          <label for="user">User</label>
-          {% render_field form.user id="user" class="form-control"%}
-        </div>
-        {% endcomment %}
-        <div class="form-group mb-3">
-          <button type="submit" class="btn btn-success w-100">Submit</button>
-        </div> 
-      </form>
     </div>
-  </section>
+    <form class="row border shadow p-md-5 p-1 " action="{% url 'completeProfile' %}" method="POST"
+      style="background-color: #EFF4FF;" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% comment %} {{form.as_p}} {% endcomment %}
+      <div class="form-group mb-3">
+        <label for="img">Image</label>
+        {% render_field form.img id="img" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="state">State</label>
+        {% render_field form.state id="state" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="district">District</label>
+        {% render_field form.district id="district" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="city">City</label>
+        {% render_field form.city id="city" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="pin">Pin</label>
+        {% render_field form.pin id="pin" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="dob">DOB</label>
+        {% render_field form.dob id="dob" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="gender">Gender</label>
+        {% render_field form.gender id="gender" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="category">Category</label>
+        {% render_field form.category id="category" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="adhaar_number">Adhaar number</label>
+      {% render_field form.adhaar_number id="adhaar_number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="12" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="phone_number">Phone</label>
+      {% render_field form.phone_number id="phone_number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="10" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="highest_qualification">Highest Qualification</label>
+        {% render_field form.highest_qualification id="highest_qualification" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="occupation">Occupation</label>
+        {% render_field form.occupation id="occupation" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="sector">Sector</label>
+        {% render_field form.sector id="sector" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <label for="income">Income</label>
+        {% render_field form.income id="income" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="7" class="form-control"%}
+      </div>
+      <div class="form-group mb-3">
+        <button type="submit" class="btn btn-success w-100">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
   <!-- End register section -->
 
   <!-- Footer  -->
