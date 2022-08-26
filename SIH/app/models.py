@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import datetime
-import json
-json_data = open('/static/states.json')
-data1 = json.load(json_data) # deserialises it
-data2 = json.dumps(data1) # json formatted string
+# import json
+# json_data = open()
+# data1 = json.load(json_data) # deserialises it
+# data2 = json.dumps(data1) # json formatted string
 
-json_data.close()
+# json_data.close()
 
 
 GENDER_CHOICES = (
@@ -102,8 +102,8 @@ class Scheme(models.Model):
     # eligibility
     state = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
-    age_min = models.IntegerField(min_length=1)
-    age_max = models.IntegerField(max_length=110)
+    age_min = models.IntegerField()
+    age_max = models.IntegerField()
     category = models.CharField(max_length=50)
     income_min = models.IntegerField()
     income_max = models.IntegerField()
