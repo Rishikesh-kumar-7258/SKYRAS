@@ -63,6 +63,7 @@ class CreateSchemeForm(forms.ModelForm):
 class CompleteProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
+        exclude = ("user", "email_token", "is_verified")
         fields = "__all__"
 
 
